@@ -1,6 +1,6 @@
 # No Man's Generator
 
-I created this app to give me some inspiration on planet and creature names in No Man's Sky.
+I created this android app to give me some inspiration on planet and creature names in No Man's Sky.
 
 Of course it can be used for other lore too ;)
 
