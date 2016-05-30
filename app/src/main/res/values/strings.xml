@@ -3,15 +3,15 @@
         <item name="generator">Generator</item>
         <item name="names">Names</item>
         <item name="names">Patterns</item>
-        <item name="tags">Tags</item>
         <item name="syllables">Syllables</item>
     </string-array>
 
     <string name="app_name" translatable="false">NMG</string>
     <string name="app_title" translatable="false">No Man\'s Generator</string>
+    <string name="syllable_hint">Syllable</string>
     <string name="action_settings">Settings</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="title_syllable">Syllable</string>
-    <string name="generator_empty_state">To generate names, just swipe down.</string>
+    <string name="generator_empty_state">Swipe down to generate names.</string>
+    <string name="error_invalid_syllable">Character restrictions: lowercase, unaccented, at least two, one vowel</string>
 </resources>

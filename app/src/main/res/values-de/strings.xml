@@ -4,13 +4,13 @@
         <item name="generator">Generator</item>
         <item name="names">Namen</item>
         <item name="names">Schemas</item>
-        <item name="tags">Tags</item>
         <item name="syllables">Silben</item>
     </string-array>
 
     <string name="action_settings">Einstellungen</string>
     <string name="cancel">Abbrechen</string>
     <string name="save">Speichern</string>
-    <string name="title_syllable">Silbe</string>
-    <string name="generator_empty_state">Wische einfach nach unten um Namen zu generieren.</string>
+    <string name="generator_empty_state">Wische nach unten um Namen zu generieren.</string>
+    <string name="error_invalid_syllable">Buchstaben Einschränkungen: kleingeschrieben, unbetont, mindestens zwei, ein Vokal</string>
+    <string name="syllable_hint">Silbe</string>
 </resources>

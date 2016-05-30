@@ -1,23 +1,21 @@
-package cherry_wave.nmg.view;
+package cherry_wave.nmg.view.syllables;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.orm.SugarRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
+import cherry_wave.nmg.view.NMGFragment;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -54,13 +52,8 @@ public class SyllablesFragment extends NMGFragment implements SyllableDialogFrag
     }
 
     private void updateSyllables() {
-        long count = SugarRecord.count(Syllable.class);
         List<Syllable> syllables = SugarRecord.listAll(Syllable.class);
-        List<String> syllablesList = new ArrayList();
-        for (Syllable syllable : syllables) {
-            Log.v(TAG, syllable + "");
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, syllablesList.toArray(new String[syllablesList.size()]));
-        this.syllables.setAdapter(adapter);
+        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(getContext(), syllables);
+        this.syllables.setAdapter(syllablesAdapter);
     }
 }

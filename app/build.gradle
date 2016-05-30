@@ -36,4 +36,9 @@ dependencies {
     compile 'com.jpardogo.materialtabstrip:library:1.1.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.jpardogo.materialtabstrip:library:1.1.0'
+    compile 'com.github.mabbas007:TagsEditText:v0.95'
+    compile 'com.afollestad.material-dialogs:core:0.8.5.9'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'com.android.support:support-v4:23.+'
+    compile "com.daimajia.swipelayout:library:1.2.0@aar"
 }
