@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Einstellungen</string>
+    <string-array name="sections">
+        <item name="generator">Generator</item>
+        <item name="names">Namen</item>
+        <item name="tags">Tags</item>
+        <item name="syllables">Silben</item>
+    </string-array>
+</resources>
