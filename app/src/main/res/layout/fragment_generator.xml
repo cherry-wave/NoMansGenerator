@@ -9,14 +9,24 @@
     tools:context=".view.GeneratorFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
         android:id="@+id/generator_refresh"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/generator_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></ListView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
+        android:id="@+id/generator_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generator_empty_state"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

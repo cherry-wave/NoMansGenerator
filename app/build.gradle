@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "cherry_wave.nomansgenerator"
+        applicationId "cherry_wave.nmg"
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
@@ -35,4 +35,5 @@ dependencies {
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.jpardogo.materialtabstrip:library:1.1.0'
     compile 'com.android.support:design:23.4.0'
+    compile 'com.jpardogo.materialtabstrip:library:1.1.0'
 }

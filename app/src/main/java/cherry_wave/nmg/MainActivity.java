@@ -1,7 +1,6 @@
-package cherry_wave.nomansgenerator;
+package cherry_wave.nmg;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,21 +10,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.astuetz.PagerSlidingTabStrip;
+
 import butterknife.BindArray;
 import butterknife.BindView;
-import cherry_wave.nomansgenerator.view.GeneratorFragment;
-import cherry_wave.nomansgenerator.view.NamesFragment;
-import cherry_wave.nomansgenerator.view.SyllablesFragment;
-import cherry_wave.nomansgenerator.view.TagsFragment;
+import cherry_wave.nmg.view.GeneratorFragment;
+import cherry_wave.nmg.view.NamesFragment;
+import cherry_wave.nmg.view.PatternsFragment;
+import cherry_wave.nmg.view.SyllablesFragment;
 
 public class MainActivity extends NMGActivity {
 
     private static final String TAG = MainActivity.class.getCanonicalName();
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    private SectionsPagerAdapter sectionsPagerAdapter;
     @BindView(R.id.container)
-    ViewPager mViewPager;
+    ViewPager viewPager;
     @BindArray(R.array.sections)
     String[] sections;
+    @BindView(R.id.tabs)
+    PagerSlidingTabStrip tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +37,13 @@ public class MainActivity extends NMGActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.app_title);
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(sectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        tabs.setViewPager(viewPager);
     }
 
 
@@ -74,11 +78,12 @@ public class MainActivity extends NMGActivity {
                 case 1:
                     return new NamesFragment();
                 case 2:
-                    return new TagsFragment();
+                    return new PatternsFragment();
                 case 3:
                     return new SyllablesFragment();
+                case 4:
+                    return new SyllablesFragment();
             }
-            Log.e(TAG, "getItem(" + position + ")");
             return null;
         }
 

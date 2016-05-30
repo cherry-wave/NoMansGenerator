@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Einstellungen</string>
     <string-array name="sections">
         <item name="generator">Generator</item>
         <item name="names">Namen</item>
+        <item name="names">Schemas</item>
         <item name="tags">Tags</item>
         <item name="syllables">Silben</item>
     </string-array>
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="save">Speichern</string>
+    <string name="title_syllable">Silbe</string>
+    <string name="generator_empty_state">Wische einfach nach unten um Namen zu generieren.</string>
 </resources>

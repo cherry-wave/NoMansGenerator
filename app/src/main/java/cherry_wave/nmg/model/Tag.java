@@ -1,4 +1,4 @@
-package cherry_wave.nomansgenerator.model;
+package cherry_wave.nmg.model;
 
 import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
@@ -17,5 +17,9 @@ public class Tag {
     @Unique
     @Setter
     String characters;
+
+    public Tag(String characters) {
+        this.characters = characters;
+    }
 
 }

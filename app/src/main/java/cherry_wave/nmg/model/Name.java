@@ -1,7 +1,9 @@
-package cherry_wave.nomansgenerator.model;
+package cherry_wave.nmg.model;
 
 import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
+
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,14 +12,17 @@ import lombok.ToString;
 @Table
 @ToString
 @Getter
-public class Syllable {
+public class Name {
 
     private Long id;
 
     @Unique
-    @Setter
     String characters;
     @Setter
-    boolean active;
+    List<Tag> tags;
+
+    public Name(String characters) {
+        this.characters = characters;
+    }
 
 }

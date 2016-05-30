@@ -1,4 +1,4 @@
-package cherry_wave.nomansgenerator;
+package cherry_wave.nmg;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

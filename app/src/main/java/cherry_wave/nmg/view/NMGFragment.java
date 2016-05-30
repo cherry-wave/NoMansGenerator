@@ -1,4 +1,4 @@
-package cherry_wave.nomansgenerator.view;
+package cherry_wave.nmg.view;
 
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
