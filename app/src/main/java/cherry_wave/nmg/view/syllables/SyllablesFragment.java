@@ -40,8 +40,12 @@ public class SyllablesFragment extends NMGFragment implements SyllableDialogFrag
     }
 
     @OnClick(R.id.syllable_add)
-    void editSyllable() {
-        SyllableDialogFragment syllableDialog = SyllableDialogFragment.newInstance(null);
+    void addSyllable() {
+        editSyllable(null);
+    }
+
+    public void editSyllable(Syllable syllable) {
+        SyllableDialogFragment syllableDialog = SyllableDialogFragment.newInstance(syllable);
         syllableDialog.setTargetFragment(this, 0);
         syllableDialog.show(getFragmentManager(), SyllableDialogFragment.class.getCanonicalName());
     }
@@ -53,7 +57,7 @@ public class SyllablesFragment extends NMGFragment implements SyllableDialogFrag
 
     private void updateSyllables() {
         List<Syllable> syllables = SugarRecord.listAll(Syllable.class);
-        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(getContext(), syllables);
+        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(this, syllables);
         this.syllables.setAdapter(syllablesAdapter);
     }
 }

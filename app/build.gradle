@@ -21,8 +21,9 @@ android {
     }
 }
 
-def butterknife_version = "8.0.1"
-def lombok_version = "1.12.6"
+def butterknife_version = '8.0.1'
+def lombok_version = '1.12.6'
+def parceler_version = '1.1.1'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,4 +42,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.0'
     compile 'com.android.support:support-v4:23.+'
     compile "com.daimajia.swipelayout:library:1.2.0@aar"
+    compile "org.parceler:parceler-api:${parceler_version}"
+    apt "org.parceler:parceler:${parceler_version}"
 }

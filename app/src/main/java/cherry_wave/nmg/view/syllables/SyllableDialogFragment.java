@@ -10,6 +10,8 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.orm.SugarRecord;
 
+import org.parceler.Parcels;
+
 import butterknife.BindString;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
@@ -18,9 +20,11 @@ import cherry_wave.nmg.view.NMGDialogFragment;
 public class SyllableDialogFragment extends NMGDialogFragment {
 
     private static final String TAG = SyllableDialogFragment.class.getCanonicalName();
-    private static final String ARG_CHARACTERS = "characters";
+
+    private static final String ARG_SYLLABLE = "syllable";
 
     private SyllableDialogListener syllableDialogListener;
+    private Syllable syllable;
 
     @BindString(R.string.syllable_hint)
     String hint;
@@ -29,10 +33,10 @@ public class SyllableDialogFragment extends NMGDialogFragment {
         public void onSyllableSave();
     }
 
-    public static SyllableDialogFragment newInstance(String characters) {
+    public static SyllableDialogFragment newInstance(Syllable syllable) {
         SyllableDialogFragment syllableDialog = new SyllableDialogFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_CHARACTERS, characters);
+        args.putParcelable(ARG_SYLLABLE, Parcels.wrap(syllable));
         syllableDialog.setArguments(args);
         return syllableDialog;
     }
@@ -44,6 +48,7 @@ public class SyllableDialogFragment extends NMGDialogFragment {
         } catch (ClassCastException e) {
             throw new ClassCastException("Calling fragment must implement SyllableDialogListener interface");
         }
+        syllable = Parcels.unwrap(getArguments().getParcelable(ARG_SYLLABLE));
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
                 .title(R.string.syllable_hint)
@@ -55,7 +60,7 @@ public class SyllableDialogFragment extends NMGDialogFragment {
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         EditText editText = dialog.getInputEditText();
                         if (isValid(editText)) {
-                            save(editText);
+                            save(editText.getText().toString());
                             dialog.dismiss();
                         }
                     }
@@ -69,7 +74,7 @@ public class SyllableDialogFragment extends NMGDialogFragment {
                     }
                 })
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(hint, getArguments().getString(ARG_CHARACTERS), new MaterialDialog.InputCallback() {
+                .input(hint, syllable != null ? syllable.getCharacters() : "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                     }
@@ -89,8 +94,12 @@ public class SyllableDialogFragment extends NMGDialogFragment {
         return true;
     }
 
-    private void save(EditText editText) {
-        SugarRecord.save(new Syllable(editText.getText().toString()));
+    private void save(String characters) {
+        if(syllable == null) {
+            new Syllable();
+        }
+        syllable.setCharacters(characters);
+        SugarRecord.save(syllable);
         syllableDialogListener.onSyllableSave();
     }
 

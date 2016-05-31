@@ -3,6 +3,9 @@ package cherry_wave.nmg.model;
 import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,18 +17,21 @@ import lombok.ToString;
 @Table
 @ToString
 @Getter
-@NoArgsConstructor
+@Parcel
 public class Syllable {
 
-    private Long id;
+    Long id;
 
     @Unique
-    private String characters;
+    String characters;
     @Setter
-    private boolean active = true;
-    private boolean startsWithVowel;
+    boolean active = true;
+    boolean startsWithVowel;
 
-    public Syllable(String characters) {
+    public Syllable() {
+    }
+
+    public void setCharacters(String characters) {
         this.characters = characters.toLowerCase();
         startsWithVowel = this.characters.matches("[aeiou].*");
     }
