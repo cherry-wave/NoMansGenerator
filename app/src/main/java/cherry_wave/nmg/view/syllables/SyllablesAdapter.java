@@ -62,8 +62,9 @@ public class SyllablesAdapter extends ArrayAdapter<Syllable> {
 
         @OnClick(R.id.syllable_delete)
         void delete() {
-            SugarRecord.delete(syllable);
-            syllablesFragment.onSyllableSave();
+            SyllableDeleteFragment syllableDeleteDialog = SyllableDeleteFragment.newInstance(syllable);
+            syllableDeleteDialog.setTargetFragment(syllablesFragment, 0);
+            syllableDeleteDialog.show(syllablesFragment.getFragmentManager(), SyllableDeleteFragment.class.getCanonicalName());
         }
 
         @OnCheckedChanged(R.id.syllable_active)

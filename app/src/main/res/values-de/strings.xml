@@ -10,7 +10,17 @@
     <string name="action_settings">Einstellungen</string>
     <string name="cancel">Abbrechen</string>
     <string name="save">Speichern</string>
-    <string name="generator_empty_state">Wische nach unten um Namen zu generieren.</string>
-    <string name="error_invalid_syllable">Buchstaben Einschränkungen: kleingeschrieben, unbetont, mindestens zwei, ein Vokal</string>
-    <string name="syllable_hint">Silbe</string>
+    <string name="generator_empty_state">Wische nach unten um Namen zu generieren</string>
+    <string name="confirm_delete_syllable">Silbe löschen?</string>
+    <string name="delete">Löschen</string>
+    <string name="confirm_delete_pattern">Schema löschen?</string>
+    <string name="title_save_pattern">Schema speichern</string>
+    <string name="title_save_syllable">Silbe speichern</string>
+    <string name="invalid_pattern_no_braces">Muss mindestens ein Schema in geschweiften Klammern {} enthalten</string>
+    <string name="invalid_pattern_length">Die Länge eines Schemas muss mindestens 1, maximal 9 betragen</string>
+    <string name="invalid_pattern_range">Die Reichweite eines Schemas muss mindestens 1-1, maximal 9-9 betragen</string>
+    <string name="invalid_pattern_start">Ein Schema muss mit einem dieser Buchstaben beginnen: X/x (egal), C/c (Konsonant), V/v (Vokal)</string>
+    <string name="invalid_syllable_character">Silben dürfen nur kleingeschriebene, unbetone Buchstaben enthalten</string>
+    <string name="invalid_syllable_length">Silben müssen mindestens zwei Buchstaben lang sein</string>
+    <string name="invalid_syllable_vowel">Silben müssen mindestens einen Vokal enthalten</string>
 </resources>

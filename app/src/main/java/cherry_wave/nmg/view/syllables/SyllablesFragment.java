@@ -16,10 +16,8 @@ import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
 import cherry_wave.nmg.view.NMGFragment;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class SyllablesFragment extends NMGFragment implements SyllableDialogFragment.SyllableDialogListener {
+public class SyllablesFragment extends NMGFragment {
 
     private static final String TAG = SyllablesFragment.class.getCanonicalName();
 
@@ -45,18 +43,13 @@ public class SyllablesFragment extends NMGFragment implements SyllableDialogFrag
     }
 
     public void editSyllable(Syllable syllable) {
-        SyllableDialogFragment syllableDialog = SyllableDialogFragment.newInstance(syllable);
-        syllableDialog.setTargetFragment(this, 0);
-        syllableDialog.show(getFragmentManager(), SyllableDialogFragment.class.getCanonicalName());
+        SyllableSaveFragment syllableSaveDialog = SyllableSaveFragment.newInstance(syllable);
+        syllableSaveDialog.setTargetFragment(this, 0);
+        syllableSaveDialog.show(getFragmentManager(), SyllableSaveFragment.class.getCanonicalName());
     }
 
-    @Override
-    public void onSyllableSave() {
-        updateSyllables();
-    }
-
-    private void updateSyllables() {
-        List<Syllable> syllables = SugarRecord.listAll(Syllable.class);
+    public void updateSyllables() {
+        List<Syllable> syllables = SugarRecord.listAll(Syllable.class, "characters");
         SyllablesAdapter syllablesAdapter = new SyllablesAdapter(this, syllables);
         this.syllables.setAdapter(syllablesAdapter);
     }

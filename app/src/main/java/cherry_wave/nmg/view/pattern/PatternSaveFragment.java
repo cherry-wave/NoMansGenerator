@@ -1,4 +1,4 @@
-package cherry_wave.nmg.view.syllables;
+package cherry_wave.nmg.view.pattern;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -12,46 +12,38 @@ import com.orm.SugarRecord;
 
 import org.parceler.Parcels;
 
-import butterknife.BindString;
 import cherry_wave.nmg.R;
-import cherry_wave.nmg.model.Syllable;
+import cherry_wave.nmg.controller.PatternUtil;
+import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.view.NMGDialogFragment;
 
-public class SyllableDialogFragment extends NMGDialogFragment {
+public class PatternSaveFragment extends NMGDialogFragment {
 
-    private static final String TAG = SyllableDialogFragment.class.getCanonicalName();
+    private static final String TAG = PatternSaveFragment.class.getCanonicalName();
 
-    private static final String ARG_SYLLABLE = "syllable";
+    private static final String ARG_PATTERN = "patterns";
 
-    private SyllableDialogListener syllableDialogListener;
-    private Syllable syllable;
+    private PatternsFragment patternsFragment;
+    private Pattern pattern;
 
-    @BindString(R.string.syllable_hint)
-    String hint;
-
-    public interface SyllableDialogListener {
-        public void onSyllableSave();
-    }
-
-    public static SyllableDialogFragment newInstance(Syllable syllable) {
-        SyllableDialogFragment syllableDialog = new SyllableDialogFragment();
+    public static PatternSaveFragment newInstance(Pattern pattern) {
+        PatternSaveFragment patternSaveDialog = new PatternSaveFragment();
         Bundle args = new Bundle();
-        args.putParcelable(ARG_SYLLABLE, Parcels.wrap(syllable));
-        syllableDialog.setArguments(args);
-        return syllableDialog;
+        args.putParcelable(ARG_PATTERN, Parcels.wrap(pattern));
+        patternSaveDialog.setArguments(args);
+        return patternSaveDialog;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        try {
-            syllableDialogListener = (SyllableDialogListener) getTargetFragment();
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Calling fragment must implement SyllableDialogListener interface");
+        patternsFragment = (PatternsFragment) getTargetFragment();
+        pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
+        if (pattern == null) {
+            pattern = new Pattern();
         }
-        syllable = Parcels.unwrap(getArguments().getParcelable(ARG_SYLLABLE));
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
-                .title(R.string.syllable_hint)
+                .title(R.string.title_save_pattern)
                 .autoDismiss(false)
                 .positiveText(R.string.save)
                 .positiveColorRes(R.color.colorPrimary)
@@ -59,8 +51,9 @@ public class SyllableDialogFragment extends NMGDialogFragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         EditText editText = dialog.getInputEditText();
+                        pattern.setCharacters(editText.getText().toString());
                         if (isValid(editText)) {
-                            save(editText.getText().toString());
+                            save();
                             dialog.dismiss();
                         }
                     }
@@ -74,7 +67,7 @@ public class SyllableDialogFragment extends NMGDialogFragment {
                     }
                 })
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(hint, syllable != null ? syllable.getCharacters() : "", new MaterialDialog.InputCallback() {
+                .input(null, pattern != null ? pattern.getCharacters() : "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                     }
@@ -86,21 +79,18 @@ public class SyllableDialogFragment extends NMGDialogFragment {
 
     private boolean isValid(EditText editText) {
         editText.setError(null);
-        if (!Syllable.isValid(editText.getText().toString())) {
-            editText.setError(getString(R.string.error_invalid_syllable));
+        String validateResponse = PatternUtil.validate(getContext(), pattern);
+        if (!validateResponse.equals(getString(R.string.ok))) {
+            editText.setError(validateResponse);
             editText.requestFocus();
             return false;
         }
         return true;
     }
 
-    private void save(String characters) {
-        if(syllable == null) {
-            new Syllable();
-        }
-        syllable.setCharacters(characters);
-        SugarRecord.save(syllable);
-        syllableDialogListener.onSyllableSave();
+    private void save() {
+        SugarRecord.save(pattern);
+        patternsFragment.updatePatterns();
     }
 
 }

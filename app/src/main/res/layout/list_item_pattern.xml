@@ -11,13 +11,13 @@
         android:gravity="fill_horizontal">
 
         <ImageButton
-            android:id="@+id/syllable_edit"
+            android:id="@+id/pattern_edit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageButton
-            android:id="@+id/syllable_delete"
+            android:id="@+id/pattern_delete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@android:drawable/ic_menu_delete" />
@@ -31,13 +31,13 @@
 
         <Switch
             android:layout_alignParentRight="true"
-            android:id="@+id/syllable_active"
+            android:id="@+id/pattern_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_toLeftOf="@id/syllable_active"
-            android:id="@+id/syllable_characters"
+            android:layout_toLeftOf="@id/pattern_active"
+            android:id="@+id/pattern_characters"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class NMGFragment extends Fragment {
 
     protected View inflate(LayoutInflater inflater, int resource, ViewGroup root, boolean attachToRoot) {

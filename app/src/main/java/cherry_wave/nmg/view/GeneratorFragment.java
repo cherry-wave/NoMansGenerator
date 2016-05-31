@@ -11,11 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import cherry_wave.nmg.R;
-import lombok.NoArgsConstructor;
+import cherry_wave.nmg.controller.PatternUtil;
+import cherry_wave.nmg.controller.SyllableUtil;
+import cherry_wave.nmg.model.Pattern;
+import cherry_wave.nmg.model.Syllable;
 
-@NoArgsConstructor
 public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = GeneratorFragment.class.getCanonicalName();
@@ -43,15 +48,51 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        String[] pattern = {"{X5}, {V1}, {c1-5}"};
-        int patternIndex = 0 + (int) (Math.random() * pattern.length);
-        Log.v(TAG, "Used pattern: " + pattern[patternIndex]);
+        List<Pattern> patterns = PatternUtil.getActivePatterns();
 
-        String[] syllables = {"ab", "ec", "id", "of", "ug"};
-        int syllablesIndex = 0 + (int) (Math.random() * syllables.length);
-        Log.v(TAG, "Used syllable: " + syllables[syllablesIndex]);
+        List<Syllable> consonantSyllables = SyllableUtil.getActiveSyllables(false);
+        List<Syllable> vowelSyllables = SyllableUtil.getActiveSyllables(true);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, syllables);
+        List<String> generatedNames = new ArrayList(10);
+
+        for (int i = 1; i <= 10; i++) {
+            Pattern usedPattern = patterns.get((int) (Math.random() * patterns.size()));
+            Log.v(TAG, "usedPattern: " + usedPattern);
+//            char startsWith = usedPattern.charAt(1);
+//            int rangeFrom = Character.getNumericValue(usedPattern.charAt(2));
+//            int rangeTo = usedPattern.length() == 6 ? Character.getNumericValue(usedPattern.charAt(4)) : rangeFrom;
+//            StringBuilder nameBuilder = new StringBuilder();
+//            while (rangeFrom <= rangeTo) {
+//                String characters;
+//                switch (startsWith) {
+//                    case 'C':
+//                    case 'c':
+//                        characters = consonantSyllables.get((int) (Math.random() * consonantSyllables.size())).getCharacters();
+//                        break;
+//                    case 'V':
+//                    case 'v':
+//                        characters = vowelSyllables.get((int) (Math.random() * vowelSyllables.size())).getCharacters();
+//                        break;
+//                    default:
+//                        if (((int) (Math.random() * 1)) == 0) {
+//                            characters = vowelSyllables.get((int) (Math.random() * vowelSyllables.size())).getCharacters();
+//                        } else {
+//                            characters = vowelSyllables.get((int) (Math.random() * vowelSyllables.size())).getCharacters();
+//                        }
+//                        break;
+//                }
+//
+//                if (rangeFrom == Character.getNumericValue(usedPattern.charAt(2)) && !Character.isLowerCase(startsWith)) {
+//                    characters = characters.substring(0, 1).toUpperCase() + characters.substring(1);
+//                }
+//
+//                nameBuilder.append(characters);
+//                rangeFrom++;
+//            }
+//            generatedNames.add(nameBuilder.toString());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, generatedNames);
         names.setAdapter(adapter);
         generatorEmptyState.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);
