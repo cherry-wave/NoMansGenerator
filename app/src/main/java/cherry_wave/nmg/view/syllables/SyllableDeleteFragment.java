@@ -21,7 +21,7 @@ public class SyllableDeleteFragment extends NMGDialogFragment {
 
     private static final String ARG_SYLLABLE = "syllable";
 
-    private PatternsFragment syllablesFragment;
+    private SyllablesFragment syllablesFragment;
     private Syllable syllable;
 
     public static SyllableDeleteFragment newInstance(Syllable syllable) {
@@ -34,7 +34,7 @@ public class SyllableDeleteFragment extends NMGDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        syllablesFragment = (PatternsFragment) getTargetFragment();
+        syllablesFragment = (SyllablesFragment) getTargetFragment();
         syllable = Parcels.unwrap(getArguments().getParcelable(ARG_SYLLABLE));
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
@@ -46,7 +46,7 @@ public class SyllableDeleteFragment extends NMGDialogFragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         SugarRecord.delete(syllable);
-                        syllablesFragment.updatePatterns();
+                        syllablesFragment.updateSyllables();
                         dialog.dismiss();
                     }
                 })

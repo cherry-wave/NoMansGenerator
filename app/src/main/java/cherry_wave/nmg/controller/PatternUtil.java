@@ -12,6 +12,8 @@ import cherry_wave.nmg.model.Pattern;
 
 public class PatternUtil {
 
+    private static final String TAG = PatternUtil.class.getCanonicalName();
+
     public static final List<Pattern> getActivePatterns() {
         return SugarRecord.findWithQuery(Pattern.class, "SELECT * FROM PATTERN WHERE active = ?", "1");
     }
@@ -19,26 +21,28 @@ public class PatternUtil {
     public static final String validate(Context context, Pattern pattern) {
         String characters = pattern.getCharacters();
 
-        java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile("[\\{\\}]*");
+        java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile("(\\{.*\\})+");
         Matcher matcher = regexPattern.matcher(characters);
 
         if(!matcher.find()) {
             return context.getString(R.string.invalid_pattern_no_braces);
         }
 
-        // TODO pattern
-        if(!characters.matches("\\{[XxVvCc][1-9](-[1-9])?\\}")) {
-            return context.getString(R.string.invalid_pattern_start);
-        }
+        String[] subPatterns = characters.split("\\{");
+        for (String subPattern : subPatterns) {
+            subPattern = "{" + subPattern;
 
-        // TODO pattern
-        if(!characters.matches("\\{[XxVvCc][1-9](-[1-9])?\\}")) {
-            return context.getString(R.string.invalid_pattern_length);
-        }
+            if(!subPattern.matches("\\{[XxVvCc].*\\}")) {
+                return context.getString(R.string.invalid_pattern_start);
+            }
 
-        // TODO pattern
-        if(!characters.matches("\\{[XxVvCc][1-9](-[1-9])?\\}")) {
-            return context.getString(R.string.invalid_pattern_range);
+            if(!subPattern.matches("\\{[XxVvCc][1-9].*\\}")) {
+                return context.getString(R.string.invalid_pattern_length);
+            }
+
+            if(!subPattern.matches("\\{[XxVvCc][1-9](-[1-9])?\\}")) {
+                return context.getString(R.string.invalid_pattern_range);
+            }
         }
 
         return context.getString(R.string.ok);

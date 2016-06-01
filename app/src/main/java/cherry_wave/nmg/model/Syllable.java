@@ -15,6 +15,8 @@ import lombok.ToString;
 @Parcel
 public class Syllable {
 
+    private Long id;
+
     @Unique
     String characters;
     @Setter

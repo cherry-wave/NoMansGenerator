@@ -20,12 +20,12 @@ public class SyllableUtil {
     public static final String validate(Context context, Syllable syllable) {
         String characters = syllable.getCharacters();
 
-        if (!characters.matches("[a-z]*")) {
-            return context.getString(R.string.invalid_syllable_character);
-        }
-
         if (characters.length() < 2) {
             return context.getString(R.string.invalid_syllable_length);
+        }
+
+        if (!characters.matches("[a-z]*")) {
+            return context.getString(R.string.invalid_syllable_character);
         }
 
         Pattern pattern = Pattern.compile("[aeiou]");

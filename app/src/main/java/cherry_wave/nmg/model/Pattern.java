@@ -16,6 +16,8 @@ import lombok.ToString;
 @Setter
 public class Pattern {
 
+    private Long id;
+
     @Unique
     String characters;
     boolean active = true;

@@ -16,6 +16,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Name {
 
+    private Long id;
+
     @Unique
     private String characters;
     @Setter
