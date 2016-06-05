@@ -16,6 +16,7 @@
     <string name="invalid_syllable_length">Syllables must be at least two characters long</string>
     <string name="invalid_syllable_vowel">Syllables must contain at least one vowel</string>
     <string name="invalid_pattern_no_braces">Must at least contain one pattern in curly braces {}</string>
+    <string name="invalid_pattern_uneven_braces">Must have the same amount of opening { and closing } curly braces</string>
     <string name="invalid_pattern_start">Pattern must start with one of these characters: X/x (any), C/c (consonant), V/v (vowel)</string>
     <string name="invalid_pattern_length">Pattern length must be at least 1 and max. 9</string>
     <string name="invalid_pattern_range">Pattern range must be at least 1-1 and max.9-9</string>

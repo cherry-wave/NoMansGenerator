@@ -23,4 +23,5 @@
     <string name="invalid_syllable_character">Silben dürfen nur kleingeschriebene, unbetone Buchstaben enthalten</string>
     <string name="invalid_syllable_length">Silben müssen mindestens zwei Buchstaben lang sein</string>
     <string name="invalid_syllable_vowel">Silben müssen mindestens einen Vokal enthalten</string>
+    <string name="invalid_pattern_uneven_braces">Muss dieselbe Anzahl an öffnenden { und schließenden } geschweiften Klammern haben</string>
 </resources>

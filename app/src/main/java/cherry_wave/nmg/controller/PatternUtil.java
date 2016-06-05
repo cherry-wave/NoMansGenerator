@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.orm.SugarRecord;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -24,23 +26,31 @@ public class PatternUtil {
         java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile("(\\{.*\\})+");
         Matcher matcher = regexPattern.matcher(characters);
 
-        if(!matcher.find()) {
+        if (!matcher.find()) {
             return context.getString(R.string.invalid_pattern_no_braces);
+        }
+
+        if (StringUtils.countMatches(characters, "{") != StringUtils.countMatches(characters, "}")) {
+            return context.getString(R.string.invalid_pattern_uneven_braces);
         }
 
         String[] subPatterns = characters.split("\\{");
         for (String subPattern : subPatterns) {
-            subPattern = "{" + subPattern;
+            int indexOfClose = subPattern.indexOf('}');
+            if(indexOfClose == -1) {
+                continue;
+            }
+            subPattern = subPattern.substring(0, indexOfClose);
 
-            if(!subPattern.matches("\\{[XxVvCc].*\\}")) {
+            if (!subPattern.matches("[XxVvCc].*")) {
                 return context.getString(R.string.invalid_pattern_start);
             }
 
-            if(!subPattern.matches("\\{[XxVvCc][1-9].*\\}")) {
+            if (!subPattern.matches("[XxVvCc][1-9].*")) {
                 return context.getString(R.string.invalid_pattern_length);
             }
 
-            if(!subPattern.matches("\\{[XxVvCc][1-9](-[1-9])?\\}")) {
+            if (!subPattern.matches("[XxVvCc][1-9](-[1-9])?")) {
                 return context.getString(R.string.invalid_pattern_range);
             }
         }
