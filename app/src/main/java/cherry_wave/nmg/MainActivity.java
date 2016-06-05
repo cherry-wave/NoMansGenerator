@@ -13,7 +13,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import butterknife.BindArray;
 import butterknife.BindView;
-import cherry_wave.nmg.view.GeneratorFragment;
+import cherry_wave.nmg.view.generator.GeneratorFragment;
 import cherry_wave.nmg.view.NamesFragment;
 import cherry_wave.nmg.view.pattern.PatternsFragment;
 import cherry_wave.nmg.view.syllables.SyllablesFragment;

@@ -18,10 +18,14 @@
     <string name="title_save_syllable">Silbe speichern</string>
     <string name="invalid_pattern_no_braces">Muss mindestens ein Schema in geschweiften Klammern {} enthalten</string>
     <string name="invalid_pattern_length">Die Länge eines Schemas muss mindestens 1, maximal 9 betragen</string>
-    <string name="invalid_pattern_range">Die Reichweite eines Schemas muss mindestens 1-1, maximal 9-9 betragen</string>
+    <string name="invalid_pattern_range">Die Reichweite eines Schemas muss mindestens 1–1, maximal 9–9 betragen</string>
     <string name="invalid_pattern_start">Ein Schema muss mit einem dieser Buchstaben beginnen: X/x (egal), C/c (Konsonant), V/v (Vokal)</string>
     <string name="invalid_syllable_character">Silben dürfen nur kleingeschriebene, unbetone Buchstaben enthalten</string>
     <string name="invalid_syllable_length">Silben müssen mindestens zwei Buchstaben lang sein</string>
     <string name="invalid_syllable_vowel">Silben müssen mindestens einen Vokal enthalten</string>
     <string name="invalid_pattern_uneven_braces">Muss dieselbe Anzahl an öffnenden { und schließenden } geschweiften Klammern haben</string>
+    <string name="ok">OK</string>
+    <string name="title_generator_info">Information</string>
+    <string name="generator_info_no_syllables">Es existieren keine akitven Silben. Bitte aktiviere oder erstelle welche.</string>
+    <string name="generator_info_no_patterns">Es existieren keine akitven Schemas. Bitte aktiviere oder erstelle welche.</string>
 </resources>

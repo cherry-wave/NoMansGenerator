@@ -19,11 +19,14 @@
     <string name="invalid_pattern_uneven_braces">Must have the same amount of opening { and closing } curly braces</string>
     <string name="invalid_pattern_start">Pattern must start with one of these characters: X/x (any), C/c (consonant), V/v (vowel)</string>
     <string name="invalid_pattern_length">Pattern length must be at least 1 and max. 9</string>
-    <string name="invalid_pattern_range">Pattern range must be at least 1-1 and max.9-9</string>
+    <string name="invalid_pattern_range">Pattern range must be at least 1–1 and max.9–9</string>
     <string name="confirm_delete_syllable">Delete syllable?</string>
     <string name="confirm_delete_pattern">Delete pattern?</string>
     <string name="delete">Delete</string>
     <string name="title_save_pattern">Save pattern</string>
     <string name="title_save_syllable">Save syllable</string>
-    <string name="ok" translatable="false">OK</string>
+    <string name="ok">OK</string>
+    <string name="title_generator_info">Info</string>
+    <string name="generator_info_no_syllables">There are no active syllables. Please activate or create some.</string>
+    <string name="generator_info_no_patterns">There are no active patterns. Please activate or create some.</string>
 </resources>
