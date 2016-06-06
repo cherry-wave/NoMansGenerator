@@ -13,7 +13,7 @@ import com.orm.SugarRecord;
 import org.parceler.Parcels;
 
 import cherry_wave.nmg.R;
-import cherry_wave.nmg.controller.SyllableUtil;
+import cherry_wave.nmg.controller.SyllableUtils;
 import cherry_wave.nmg.model.Syllable;
 import cherry_wave.nmg.view.NMGDialogFragment;
 
@@ -79,7 +79,7 @@ public class SyllableSaveFragment extends NMGDialogFragment {
 
     private boolean isValid(EditText editText) {
         editText.setError(null);
-        String validateResponse = SyllableUtil.validate(getContext(), syllable);
+        String validateResponse = SyllableUtils.validate(getContext(), syllable);
         if (!validateResponse.equals(getString(R.string.ok))) {
             editText.setError(validateResponse);
             editText.requestFocus();

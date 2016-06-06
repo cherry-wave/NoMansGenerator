@@ -27,8 +27,7 @@ public class SyllablesFragment extends NMGFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflate(inflater, R.layout.fragment_syllables, container, false);
-        return rootView;
+        return inflate(inflater, R.layout.fragment_syllables, container, false);
     }
 
     @Override

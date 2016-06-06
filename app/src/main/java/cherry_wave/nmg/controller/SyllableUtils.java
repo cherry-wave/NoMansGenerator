@@ -3,6 +3,8 @@ package cherry_wave.nmg.controller;
 import android.content.Context;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -11,13 +13,16 @@ import java.util.regex.Pattern;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
 
-public class SyllableUtil {
+public class SyllableUtils {
 
-    public static final List<Syllable> getActiveSyllables(boolean shouldStartWidthVowel) {
-        return SugarRecord.findWithQuery(Syllable.class, "SELECT * FROM SYLLABLE WHERE active = 1 AND starts_with_vowel = ?", shouldStartWidthVowel ? "1" : "0");
+    public static List<Syllable> getActiveSyllables(boolean shouldStartWidthVowel) {
+        return Select.from(Syllable.class)
+                .where(Condition.prop("active").eq(1),
+                        Condition.prop("starts_with_vowel").eq(shouldStartWidthVowel ? 1 : 0))
+                .list();
     }
 
-    public static final String validate(Context context, Syllable syllable) {
+    public static String validate(Context context, Syllable syllable) {
         String characters = syllable.getCharacters();
 
         if (characters.length() < 2) {
@@ -31,7 +36,7 @@ public class SyllableUtil {
         Pattern pattern = Pattern.compile("[aeiou]");
         Matcher matcher = pattern.matcher(characters);
 
-        if(!matcher.find()) {
+        if (!matcher.find()) {
             return context.getString(R.string.invalid_syllable_vowel);
         }
 

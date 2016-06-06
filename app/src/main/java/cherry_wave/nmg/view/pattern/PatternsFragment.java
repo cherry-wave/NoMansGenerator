@@ -27,8 +27,7 @@ public class PatternsFragment extends NMGFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflate(inflater, R.layout.fragment_patterns, container, false);
-        return rootView;
+        return inflate(inflater, R.layout.fragment_patterns, container, false);
     }
 
     @Override

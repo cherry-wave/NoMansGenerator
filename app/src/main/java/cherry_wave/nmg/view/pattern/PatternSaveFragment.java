@@ -13,7 +13,7 @@ import com.orm.SugarRecord;
 import org.parceler.Parcels;
 
 import cherry_wave.nmg.R;
-import cherry_wave.nmg.controller.PatternUtil;
+import cherry_wave.nmg.controller.PatternUtils;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.view.NMGDialogFragment;
 
@@ -79,7 +79,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
 
     private boolean isValid(EditText editText) {
         editText.setError(null);
-        String validateResponse = PatternUtil.validate(getContext(), pattern);
+        String validateResponse = PatternUtils.validate(getContext(), pattern);
         if (!validateResponse.equals(getString(R.string.ok))) {
             editText.setError(validateResponse);
             editText.requestFocus();
