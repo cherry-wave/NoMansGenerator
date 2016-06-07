@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import cherry_wave.nmg.R;
-import cherry_wave.nmg.view.NMGDialogFragment;
+import cherry_wave.nmg.NMGDialogFragment;
 
 public class GeneratorInfoFragment extends NMGDialogFragment {
 

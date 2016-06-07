@@ -6,7 +6,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ import cherry_wave.nmg.controller.PatternUtils;
 import cherry_wave.nmg.controller.SyllableUtils;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
-import cherry_wave.nmg.view.NMGFragment;
+import cherry_wave.nmg.NMGFragment;
 
 public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -117,8 +116,8 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                 generatedNames.add(name.toString());
             }
 
-            ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, generatedNames);
-            names.setAdapter(adapter);
+            GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames);
+            names.setAdapter(generatedNamesAdapter);
 
             generatorEmptyState.setVisibility(View.GONE);
         }

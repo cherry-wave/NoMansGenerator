@@ -15,7 +15,7 @@ import org.parceler.Parcels;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.controller.SyllableUtils;
 import cherry_wave.nmg.model.Syllable;
-import cherry_wave.nmg.view.NMGDialogFragment;
+import cherry_wave.nmg.NMGDialogFragment;
 
 public class SyllableSaveFragment extends NMGDialogFragment {
 

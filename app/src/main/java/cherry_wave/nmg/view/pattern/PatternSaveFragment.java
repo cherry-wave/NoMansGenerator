@@ -15,7 +15,7 @@ import org.parceler.Parcels;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.controller.PatternUtils;
 import cherry_wave.nmg.model.Pattern;
-import cherry_wave.nmg.view.NMGDialogFragment;
+import cherry_wave.nmg.NMGDialogFragment;
 
 public class PatternSaveFragment extends NMGDialogFragment {
 

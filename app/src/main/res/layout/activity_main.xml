@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="cherry_wave.nmg.MainActivity">
+    tools:context=".view.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             app:pstsIndicatorColor="?attr/colorAccent"
             app:pstsIndicatorHeight="@dimen/pstsIndicatorHeight" />
 
-        <android.support.v4.view.ViewPager
+        <cherry_wave.nmg.NMGViewPager
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

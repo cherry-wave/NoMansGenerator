@@ -20,12 +20,10 @@ import cherry_wave.nmg.model.Pattern;
 
 public class PatternsAdapter extends ArrayAdapter<Pattern> {
 
-    private static final String TAG = PatternsAdapter.class.getCanonicalName();
-
     private PatternsFragment patternsFragment;
 
-    public PatternsAdapter(PatternsFragment patternsFragment, List<Pattern> pattern) {
-        super(patternsFragment.getContext(), R.layout.list_item_pattern, pattern);
+    public PatternsAdapter(PatternsFragment patternsFragment, List<Pattern> patterns) {
+        super(patternsFragment.getContext(), R.layout.list_item_pattern, patterns);
         this.patternsFragment = patternsFragment;
     }
 

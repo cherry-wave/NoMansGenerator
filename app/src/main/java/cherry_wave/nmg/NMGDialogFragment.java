@@ -1,4 +1,4 @@
-package cherry_wave.nmg.view;
+package cherry_wave.nmg;
 
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;

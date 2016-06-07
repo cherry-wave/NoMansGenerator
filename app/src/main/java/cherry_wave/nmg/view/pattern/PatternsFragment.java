@@ -15,11 +15,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
-import cherry_wave.nmg.view.NMGFragment;
+import cherry_wave.nmg.NMGFragment;
 
 public class PatternsFragment extends NMGFragment {
-
-    private static final String TAG = PatternsFragment.class.getCanonicalName();
 
     @BindView(R.id.patterns_list)
     ListView patterns;
@@ -48,8 +46,8 @@ public class PatternsFragment extends NMGFragment {
     }
 
     public void updatePatterns() {
-        List<Pattern> pattern = SugarRecord.listAll(Pattern.class, "characters");
-        PatternsAdapter patternsAdapter = new PatternsAdapter(this, pattern);
+        List<Pattern> patterns = SugarRecord.listAll(Pattern.class, "characters");
+        PatternsAdapter patternsAdapter = new PatternsAdapter(this, patterns);
         this.patterns.setAdapter(patternsAdapter);
     }
 }

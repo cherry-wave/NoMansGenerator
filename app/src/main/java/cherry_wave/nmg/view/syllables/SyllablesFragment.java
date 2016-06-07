@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
-import cherry_wave.nmg.view.NMGFragment;
+import cherry_wave.nmg.NMGFragment;
 
 public class SyllablesFragment extends NMGFragment {
 

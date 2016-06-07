@@ -1,9 +1,10 @@
-package cherry_wave.nmg;
+package cherry_wave.nmg.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,18 +14,21 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import butterknife.BindArray;
 import butterknife.BindView;
+import cherry_wave.nmg.NMGActivity;
+import cherry_wave.nmg.NMGViewPager;
+import cherry_wave.nmg.R;
 import cherry_wave.nmg.view.generator.GeneratorFragment;
-import cherry_wave.nmg.view.NamesFragment;
+import cherry_wave.nmg.view.names.NamesFragment;
 import cherry_wave.nmg.view.pattern.PatternsFragment;
 import cherry_wave.nmg.view.syllables.SyllablesFragment;
 
-public class MainActivity extends NMGActivity {
-
-    private static final String TAG = MainActivity.class.getCanonicalName();
+public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeListener {
 
     private SectionsPagerAdapter sectionsPagerAdapter;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.container)
-    ViewPager viewPager;
+    NMGViewPager viewPager;
     @BindArray(R.array.sections)
     String[] sections;
     @BindView(R.id.tabs)
@@ -35,7 +39,6 @@ public class MainActivity extends NMGActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_title);
         setSupportActionBar(toolbar);
 
@@ -43,6 +46,7 @@ public class MainActivity extends NMGActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
 
         tabs.setViewPager(viewPager);
+        tabs.setOnPageChangeListener(this);
     }
 
 
@@ -61,6 +65,21 @@ public class MainActivity extends NMGActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Fragment fragment = sectionsPagerAdapter.getItem(position);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.detach(fragment).attach(fragment).commit();
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
     }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -95,5 +114,6 @@ public class MainActivity extends NMGActivity {
         public CharSequence getPageTitle(int position) {
             return sections[position];
         }
+
     }
 }
