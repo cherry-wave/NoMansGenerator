@@ -4,8 +4,10 @@ import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
 import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,9 +15,10 @@ import lombok.ToString;
 @ToString
 @Getter
 @Parcel
+@NoArgsConstructor
 public class Syllable {
 
-    private Long id;
+    Long id;
 
     @Unique
     String characters;
@@ -23,7 +26,9 @@ public class Syllable {
     boolean active = true;
     boolean startsWithVowel;
 
-    public Syllable() {
+    @ParcelConstructor
+    public Syllable(String characters) {
+        setCharacters(characters);
     }
 
     public void setCharacters(String characters) {

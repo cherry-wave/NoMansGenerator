@@ -20,12 +20,12 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Name {
 
-    private Long id;
+    Long id;
 
     @Unique
-    private String characters;
+    String characters;
     @Setter
-    private List<String> tags;
+    List<String> tags;
 
     @ParcelConstructor
     public Name(String characters) {

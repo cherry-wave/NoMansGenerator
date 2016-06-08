@@ -39,7 +39,7 @@ public class SyllableSaveFragment extends NMGDialogFragment {
         syllablesFragment = (SyllablesFragment) getTargetFragment();
         syllable = Parcels.unwrap(getArguments().getParcelable(ARG_SYLLABLE));
         if (syllable == null) {
-            syllable = new Syllable();
+            syllable = new Syllable("");
         }
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
@@ -67,7 +67,7 @@ public class SyllableSaveFragment extends NMGDialogFragment {
                     }
                 })
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(null, syllable != null ? syllable.getCharacters() : "", new MaterialDialog.InputCallback() {
+                .input(null, syllable.getCharacters(), new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                     }

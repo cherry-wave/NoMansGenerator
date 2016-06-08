@@ -39,7 +39,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
         patternsFragment = (PatternsFragment) getTargetFragment();
         pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
         if (pattern == null) {
-            pattern = new Pattern();
+            pattern = new Pattern("");
         }
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
@@ -67,7 +67,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
                     }
                 })
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(null, pattern != null ? pattern.getCharacters() : "", new MaterialDialog.InputCallback() {
+                .input(null, pattern.getCharacters(), new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                     }

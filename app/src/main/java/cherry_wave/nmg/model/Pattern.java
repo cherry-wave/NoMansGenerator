@@ -4,8 +4,10 @@ import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
 import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,15 +16,18 @@ import lombok.ToString;
 @Getter
 @Parcel
 @Setter
+@NoArgsConstructor
 public class Pattern {
 
-    private Long id;
+    Long id;
 
     @Unique
     String characters;
     boolean active = true;
 
-    public Pattern() {
+    @ParcelConstructor
+    public Pattern(String characters) {
+        this.characters = characters;
     }
 
 }
