@@ -34,6 +34,7 @@ public class SyllableSaveFragment extends NMGDialogFragment {
         return syllableDialog;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         syllablesFragment = (SyllablesFragment) getTargetFragment();
@@ -69,12 +70,10 @@ public class SyllableSaveFragment extends NMGDialogFragment {
                 .inputType(InputType.TYPE_CLASS_TEXT)
                 .input(null, syllable.getCharacters(), new MaterialDialog.InputCallback() {
                     @Override
-                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
                     }
                 });
-        final MaterialDialog materialDialog = builder.build();
-
-        return materialDialog;
+        return builder.build();
     }
 
     private boolean isValid(EditText editText) {

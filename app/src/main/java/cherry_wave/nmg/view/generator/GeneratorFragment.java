@@ -1,5 +1,7 @@
 package cherry_wave.nmg.view.generator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -7,23 +9,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import butterknife.BindView;
+import cherry_wave.nmg.NMGFragment;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.controller.PatternUtils;
 import cherry_wave.nmg.controller.SyllableUtils;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
-import cherry_wave.nmg.NMGFragment;
 
-public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener, SeekBar.OnSeekBarChangeListener {
 
-    private static final String TAG = GeneratorFragment.class.getCanonicalName();
+    private static final String GENERATED_NAMES_AMOUNT = "generatedNamesAmount";
+
+    private SharedPreferences.Editor editor;
+
+    private Integer generatedNamesAmount;
 
     @BindView(R.id.generator_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -31,6 +39,10 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
     ListView names;
     @BindView(R.id.generator_empty_state)
     TextView generatorEmptyState;
+    @BindView(R.id.generated_names_amount_selector)
+    SeekBar amountSelector;
+    @BindView(R.id.generated_names_amount_display)
+    TextView amountDisplay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +55,32 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         super.onViewCreated(view, savedInstanceState);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        amountSelector.setOnSeekBarChangeListener(this);
+        setProgress();
+    }
+
+    private void setProgress() {
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        generatedNamesAmount = sharedPreferences.getInt(GENERATED_NAMES_AMOUNT, 10);
+        amountSelector.setProgress(generatedNamesAmount);
+        amountDisplay.setText(generatedNamesAmount.toString());
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        generatedNamesAmount = progress;
+        amountDisplay.setText(generatedNamesAmount.toString());
+        editor.putInt(GENERATED_NAMES_AMOUNT, generatedNamesAmount);
+        editor.apply();
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
     @Override
@@ -63,12 +101,12 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         } else if (!patternsContainConsonantStart && vowelSyllables.isEmpty()) {
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
         } else {
-            List<String> generatedNames = new ArrayList(10);
+            SortedSet<String> generatedNames = new TreeSet();
             Random anyRandom = new Random();
             Random consonantRandom = new Random();
             Random vowelRandom = new Random();
 
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= generatedNamesAmount; i++) {
                 Pattern pattern = activePatterns.get((int) (Math.random() * activePatterns.size()));
                 String[] subPatterns = pattern.getCharacters().split("\\{");
                 StringBuilder name = new StringBuilder();
@@ -87,13 +125,13 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                     } else if (PatternUtils.startsWith(subPattern, PatternUtils.Start.VOWEL)) {
                         startSyllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
                     } else {
-                        if(anyRandom.nextInt(1) == 0) {
+                        if (anyRandom.nextInt(1) == 0) {
                             startSyllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
                         } else {
                             startSyllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
                         }
                     }
-                    if(PatternUtils.startsWithUppercase(subPattern)) {
+                    if (PatternUtils.startsWithUppercase(subPattern)) {
                         startSyllable = startSyllable.substring(0, 1).toUpperCase() + startSyllable.substring(1);
                     }
                     name.append(startSyllable);
@@ -102,7 +140,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                     int to = PatternUtils.getRangeTo(subPattern);
                     for (int from = 1; from < to; from++) {
                         String syllable;
-                        if(anyRandom.nextInt(1) == 0) {
+                        if (anyRandom.nextInt(1) == 0) {
                             syllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
                         } else {
                             syllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
@@ -116,7 +154,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                 generatedNames.add(name.toString());
             }
 
-            GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames);
+            GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames.toArray(new String[generatedNames.size()]));
             names.setAdapter(generatedNamesAdapter);
 
             generatorEmptyState.setVisibility(View.GONE);

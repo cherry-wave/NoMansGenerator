@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -46,6 +45,7 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
     String[] sections;
     @BindView(R.id.tabs)
     PagerSlidingTabStrip tabs;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,8 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
         toolbar.setTitle(R.string.app_title);
         setSupportActionBar(toolbar);
 
-        viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
+        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(sectionsPagerAdapter);
 
         tabs.setViewPager(viewPager);
         tabs.setOnPageChangeListener(this);
@@ -109,9 +110,7 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
 
     @Override
     public void onPageSelected(int position) {
-//        Fragment fragment = sectionsPagerAdapter.getItem(position);
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.detach(fragment).attach(fragment).commit();
+        sectionsPagerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -143,6 +142,11 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
                     return new SyllablesFragment();
             }
             return null;
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
 
         @Override

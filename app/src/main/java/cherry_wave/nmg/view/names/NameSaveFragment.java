@@ -1,4 +1,4 @@
-package cherry_wave.nmg.view.pattern;
+package cherry_wave.nmg.view.names;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -12,37 +12,36 @@ import com.orm.SugarRecord;
 
 import org.parceler.Parcels;
 
-import cherry_wave.nmg.R;
-import cherry_wave.nmg.controller.PatternUtils;
-import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.NMGDialogFragment;
+import cherry_wave.nmg.R;
+import cherry_wave.nmg.model.Name;
 
-public class PatternSaveFragment extends NMGDialogFragment {
+public class NameSaveFragment extends NMGDialogFragment {
 
-    private static final String ARG_PATTERN = "pattern";
+    private static final String ARG_NAME = "name";
 
-    private PatternsFragment patternsFragment;
-    private Pattern pattern;
+    private NamesFragment namesFragment;
+    private Name name;
 
-    public static PatternSaveFragment newInstance(Pattern pattern) {
-        PatternSaveFragment patternSaveDialog = new PatternSaveFragment();
+    public static NameSaveFragment newInstance(Name name) {
+        NameSaveFragment nameSaveDialog = new NameSaveFragment();
         Bundle args = new Bundle();
-        args.putParcelable(ARG_PATTERN, Parcels.wrap(pattern));
-        patternSaveDialog.setArguments(args);
-        return patternSaveDialog;
+        args.putParcelable(ARG_NAME, Parcels.wrap(name));
+        nameSaveDialog.setArguments(args);
+        return nameSaveDialog;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        patternsFragment = (PatternsFragment) getTargetFragment();
-        pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
-        if (pattern == null) {
-            pattern = new Pattern("");
+        namesFragment = (NamesFragment) getTargetFragment();
+        name = Parcels.unwrap(getArguments().getParcelable(ARG_NAME));
+        if (name == null) {
+            name = new Name("");
         }
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
-                .title(R.string.title_save_pattern)
+                .title(R.string.title_save_name)
                 .autoDismiss(false)
                 .positiveText(R.string.save)
                 .positiveColorRes(R.color.colorPrimary)
@@ -50,11 +49,9 @@ public class PatternSaveFragment extends NMGDialogFragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         EditText editText = dialog.getInputEditText();
-                        pattern.setCharacters(editText.getText().toString());
-                        if (isValid(editText)) {
-                            save();
-                            dialog.dismiss();
-                        }
+                        name.setCharacters(editText.getText().toString());
+                        save();
+                        dialog.dismiss();
                     }
                 })
                 .negativeText(R.string.cancel)
@@ -66,7 +63,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
                     }
                 })
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(null, pattern.getCharacters(), new MaterialDialog.InputCallback() {
+                .input(null, name.getCharacters(), new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
                     }
@@ -74,20 +71,9 @@ public class PatternSaveFragment extends NMGDialogFragment {
         return builder.build();
     }
 
-    private boolean isValid(EditText editText) {
-        editText.setError(null);
-        String validateResponse = PatternUtils.validate(getContext(), pattern);
-        if (!validateResponse.equals(getString(R.string.ok))) {
-            editText.setError(validateResponse);
-            editText.requestFocus();
-            return false;
-        }
-        return true;
-    }
-
     private void save() {
-        SugarRecord.save(pattern);
-        patternsFragment.updatePatterns();
+        SugarRecord.save(name);
+        namesFragment.updateNames();
     }
 
 }

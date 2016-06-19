@@ -10,20 +10,15 @@ import android.widget.TextView;
 
 import com.orm.SugarRecord;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Name;
-import cherry_wave.nmg.view.pattern.PatternDeleteFragment;
-import cherry_wave.nmg.view.pattern.PatternsFragment;
 
 public class GeneratedNamesAdapter extends ArrayAdapter<String> {
 
-    public GeneratedNamesAdapter(Context context, List<String> generatedNames) {
+    public GeneratedNamesAdapter(Context context, String[] generatedNames) {
         super(context, R.layout.list_item_generated_name, generatedNames);
     }
 

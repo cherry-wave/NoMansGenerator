@@ -9,17 +9,17 @@
         android:gravity="fill_horizontal">
 
         <ImageButton
-            android:contentDescription="@string/edit"
             android:id="@+id/syllable_edit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:contentDescription="@string/edit"
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageButton
-            android:contentDescription="@string/delete"
             android:id="@+id/syllable_delete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:contentDescription="@string/delete"
             android:src="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 
@@ -30,16 +30,19 @@
         android:orientation="vertical">
 
         <Switch
-            android:layout_alignParentEnd="true"
             android:id="@+id/syllable_active"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
 
         <TextView
-            android:layout_toStartOf="@id/syllable_active"
             android:id="@+id/syllable_characters"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/app_margin"
+            android:layout_toStartOf="@id/syllable_active" />
 
     </RelativeLayout>
 </com.daimajia.swipe.SwipeLayout>

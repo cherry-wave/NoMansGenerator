@@ -2,23 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".view.syllables.SyllablesFragment">
 
     <ListView
         android:id="@+id/syllables_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/list_view_margin_bottom"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/syllable_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="@dimen/app_margin"
         android:src="@drawable/ic_add" />
 
 </android.support.design.widget.CoordinatorLayout>

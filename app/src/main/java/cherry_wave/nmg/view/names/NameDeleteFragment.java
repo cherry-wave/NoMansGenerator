@@ -1,4 +1,4 @@
-package cherry_wave.nmg.view.pattern;
+package cherry_wave.nmg.view.names;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -10,42 +10,40 @@ import com.orm.SugarRecord;
 
 import org.parceler.Parcels;
 
-import cherry_wave.nmg.R;
-import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.NMGDialogFragment;
+import cherry_wave.nmg.R;
+import cherry_wave.nmg.model.Name;
 
-public class PatternDeleteFragment extends NMGDialogFragment {
+public class NameDeleteFragment extends NMGDialogFragment {
 
-    private static final String TAG = PatternDeleteFragment.class.getCanonicalName();
+    private static final String ARG_NAME = "name";
 
-    private static final String ARG_PATTERN = "pattern";
+    private NamesFragment namesFragment;
+    private Name name;
 
-    private PatternsFragment patternsFragment;
-    private Pattern pattern;
-
-    public static PatternDeleteFragment newInstance(Pattern pattern) {
-        PatternDeleteFragment patternDeleteDialog = new PatternDeleteFragment();
+    public static NameDeleteFragment newInstance(Name name) {
+        NameDeleteFragment nameDeleteDialog = new NameDeleteFragment();
         Bundle args = new Bundle();
-        args.putParcelable(ARG_PATTERN, Parcels.wrap(pattern));
-        patternDeleteDialog.setArguments(args);
-        return patternDeleteDialog;
+        args.putParcelable(ARG_NAME, Parcels.wrap(name));
+        nameDeleteDialog.setArguments(args);
+        return nameDeleteDialog;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        patternsFragment = (PatternsFragment) getTargetFragment();
-        pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
+        namesFragment = (NamesFragment) getTargetFragment();
+        name = Parcels.unwrap(getArguments().getParcelable(ARG_NAME));
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
-                .content(R.string.confirm_delete_pattern)
+                .content(R.string.confirm_delete_name)
                 .autoDismiss(false)
                 .positiveText(R.string.delete)
                 .positiveColorRes(R.color.colorPrimary)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        SugarRecord.delete(pattern);
-                        patternsFragment.updatePatterns();
+                        SugarRecord.delete(name);
+                        namesFragment.updateNames();
                         dialog.dismiss();
                     }
                 })

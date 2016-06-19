@@ -16,6 +16,7 @@ import lombok.ToString;
 @Table
 @ToString
 @Getter
+@Setter
 @Parcel
 @NoArgsConstructor
 public class Name {
@@ -24,7 +25,6 @@ public class Name {
 
     @Unique
     String characters;
-    @Setter
     List<String> tags;
 
     @ParcelConstructor
