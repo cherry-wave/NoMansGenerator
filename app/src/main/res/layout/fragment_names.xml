@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     tools:context=".view.names.NamesFragment">
 
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/names_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/list_view_margin_bottom"/>
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/name_add"

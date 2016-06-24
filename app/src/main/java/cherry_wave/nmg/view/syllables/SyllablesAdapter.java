@@ -14,7 +14,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
 
@@ -33,10 +32,12 @@ public class SyllablesAdapter extends ArrayAdapter<Syllable> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Syllable syllable = getItem(position);
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_syllable, parent, false);
-        new ViewHolder(view, syllable);
+        if(convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_syllable, parent, false);
+            new ViewHolder(convertView, syllable);
+        }
 
-        return view;
+        return convertView;
     }
 
     class ViewHolder {
@@ -53,18 +54,6 @@ public class SyllablesAdapter extends ArrayAdapter<Syllable> {
             this.syllable = syllable;
             characters.setText(syllable.getCharacters());
             active.setChecked(syllable.isActive());
-        }
-
-        @OnClick(R.id.syllable_edit)
-        void edit() {
-            syllablesFragment.editSyllable(syllable);
-        }
-
-        @OnClick(R.id.syllable_delete)
-        void delete() {
-            SyllableDeleteFragment syllableDeleteDialog = SyllableDeleteFragment.newInstance(syllable);
-            syllableDeleteDialog.setTargetFragment(syllablesFragment, 0);
-            syllableDeleteDialog.show(syllablesFragment.getFragmentManager(), SyllableDeleteFragment.class.getCanonicalName());
         }
 
         @OnCheckedChanged(R.id.syllable_active)

@@ -2,25 +2,32 @@ package cherry_wave.nmg.view.pattern;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.orm.SugarRecord;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cherry_wave.nmg.NMGFragment;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
-import cherry_wave.nmg.NMGFragment;
 
 public class PatternsFragment extends NMGFragment {
 
+    @BindView(R.id.pattern_add)
+    FloatingActionButton add;
     @BindView(R.id.patterns_list)
-    ListView patterns;
+    SwipeMenuListView patternsListView;
+    private List<Pattern> patterns;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +38,37 @@ public class PatternsFragment extends NMGFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        patternsListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                Pattern pattern = patterns.get(position);
+                switch (index) {
+                    case 0:
+                        editPattern(pattern);
+                        break;
+                    case 1:
+                        PatternDeleteFragment patternDeleteDialog = PatternDeleteFragment.newInstance(pattern);
+                        patternDeleteDialog.setTargetFragment(PatternsFragment.this, 0);
+                        patternDeleteDialog.show(getFragmentManager(), PatternDeleteFragment.class.getCanonicalName());
+                        break;
+                }
+                return false;
+            }
+        });
+
+        patternsListView.setOnMenuStateChangeListener(new SwipeMenuListView.OnMenuStateChangeListener() {
+            @Override
+            public void onMenuOpen(int position) {
+                add.hide();
+            }
+
+            @Override
+            public void onMenuClose(int position) {
+                add.show();
+            }
+        });
+
         updatePatterns();
     }
 
@@ -46,8 +84,28 @@ public class PatternsFragment extends NMGFragment {
     }
 
     public void updatePatterns() {
-        List<Pattern> patterns = SugarRecord.listAll(Pattern.class, "characters");
+        patterns = SugarRecord.listAll(Pattern.class, "characters");
+
         PatternsAdapter patternsAdapter = new PatternsAdapter(this, patterns);
-        this.patterns.setAdapter(patternsAdapter);
+        patternsListView.setAdapter(patternsAdapter);
+
+        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
+            @Override
+            public void create(SwipeMenu menu) {
+                SwipeMenuItem edit = new SwipeMenuItem(getActivity().getApplicationContext());
+                edit.setBackground(R.color.colorAccent);
+                edit.setIcon(android.R.drawable.ic_menu_edit);
+                edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
+                menu.addMenuItem(edit);
+
+                SwipeMenuItem delete = new SwipeMenuItem(getActivity().getApplicationContext());
+                delete.setIcon(android.R.drawable.ic_menu_delete);
+                delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
+                menu.addMenuItem(delete);
+            }
+        };
+        patternsListView.setMenuCreator(swipeMenuCreator);
+
+        add.show();
     }
 }

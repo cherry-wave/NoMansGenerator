@@ -14,7 +14,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
 
@@ -31,10 +30,12 @@ public class PatternsAdapter extends ArrayAdapter<Pattern> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Pattern pattern = getItem(position);
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_pattern, parent, false);
-        new ViewHolder(view, pattern);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_pattern, parent, false);
+            new ViewHolder(convertView, pattern);
+        }
 
-        return view;
+        return convertView;
     }
 
     class ViewHolder {
@@ -51,18 +52,6 @@ public class PatternsAdapter extends ArrayAdapter<Pattern> {
             this.pattern = pattern;
             characters.setText(pattern.getCharacters());
             active.setChecked(pattern.isActive());
-        }
-
-        @OnClick(R.id.pattern_edit)
-        void edit() {
-            patternsFragment.editPattern(pattern);
-        }
-
-        @OnClick(R.id.pattern_delete)
-        void delete() {
-            PatternDeleteFragment patternDeleteDialog = PatternDeleteFragment.newInstance(pattern);
-            patternDeleteDialog.setTargetFragment(patternsFragment, 0);
-            patternDeleteDialog.show(patternsFragment.getFragmentManager(), PatternDeleteFragment.class.getCanonicalName());
         }
 
         @OnCheckedChanged(R.id.pattern_active)

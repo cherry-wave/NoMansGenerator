@@ -29,4 +29,8 @@
     <string name="generator_info_no_patterns">Du hast keine aktiven Schemas. Bitte aktiviere oder erstelle welche.</string>
     <string name="generator_info_no_consonant_syllables">Du hast nur aktive Schemas die Konsonanten benötigen aber keine aktiven Silben die mit einem anfangen. Bitte aktiviere oder erstelle welche.</string>
     <string name="generator_info_no_vowel_syllables">Du hast nur aktive Schemas die Vokale benötigen aber keine aktiven Silben die mit einem anfangen. Bitte aktiviere oder erstelle welche.</string>
+    <string name="confirm_delete_name">Namen löschen?</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="generated_names_amount_info">Anzahl der generierten Namen</string>
+    <string name="title_save_name">Namen speichern</string>
 </resources>

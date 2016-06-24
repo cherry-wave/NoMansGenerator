@@ -1,48 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <Switch
+        android:id="@+id/syllable_active"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="fill_horizontal">
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
 
-        <ImageButton
-            android:id="@+id/syllable_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/edit"
-            android:src="@android:drawable/ic_menu_edit" />
-
-        <ImageButton
-            android:id="@+id/syllable_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/delete"
-            android:src="@android:drawable/ic_menu_delete" />
-    </LinearLayout>
-
-    <RelativeLayout
+    <TextView
+        android:id="@+id/syllable_characters"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/syllable_active"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
 
-        <Switch
-            android:id="@+id/syllable_active"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
-
-        <TextView
-            android:id="@+id/syllable_characters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/app_margin"
-            android:layout_toStartOf="@id/syllable_active" />
-
-    </RelativeLayout>
-</com.daimajia.swipe.SwipeLayout>
+</RelativeLayout>
