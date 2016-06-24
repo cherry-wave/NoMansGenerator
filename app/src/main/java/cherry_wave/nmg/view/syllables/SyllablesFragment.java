@@ -93,12 +93,13 @@ public class SyllablesFragment extends NMGFragment {
             @Override
             public void create(SwipeMenu menu) {
                 SwipeMenuItem edit = new SwipeMenuItem(getActivity().getApplicationContext());
-                edit.setBackground(R.color.colorAccent);
+                edit.setBackground(android.R.color.darker_gray);
                 edit.setIcon(android.R.drawable.ic_menu_edit);
                 edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
                 menu.addMenuItem(edit);
 
                 SwipeMenuItem delete = new SwipeMenuItem(getActivity().getApplicationContext());
+                delete.setBackground(android.R.color.holo_red_light);
                 delete.setIcon(android.R.drawable.ic_menu_delete);
                 delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
                 menu.addMenuItem(delete);
