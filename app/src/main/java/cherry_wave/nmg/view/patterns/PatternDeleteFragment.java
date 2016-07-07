@@ -1,4 +1,4 @@
-package cherry_wave.nmg.view.pattern;
+package cherry_wave.nmg.view.patterns;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -16,11 +16,9 @@ import cherry_wave.nmg.NMGDialogFragment;
 
 public class PatternDeleteFragment extends NMGDialogFragment {
 
-    private static final String TAG = PatternDeleteFragment.class.getCanonicalName();
-
     private static final String ARG_PATTERN = "pattern";
 
-    private PatternsFragment patternsFragment;
+    private PatternsActivity patternsActivity;
     private Pattern pattern;
 
     public static PatternDeleteFragment newInstance(Pattern pattern) {
@@ -33,7 +31,7 @@ public class PatternDeleteFragment extends NMGDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        patternsFragment = (PatternsFragment) getTargetFragment();
+        patternsActivity = (PatternsActivity) getActivity();
         pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
@@ -45,7 +43,7 @@ public class PatternDeleteFragment extends NMGDialogFragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         SugarRecord.delete(pattern);
-                        patternsFragment.updatePatterns();
+                        patternsActivity.updatePatterns();
                         dialog.dismiss();
                     }
                 })

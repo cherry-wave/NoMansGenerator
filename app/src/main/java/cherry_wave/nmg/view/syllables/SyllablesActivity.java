@@ -17,11 +17,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cherry_wave.nmg.NMGActivity;
 import cherry_wave.nmg.NMGFragment;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
 
-public class SyllablesFragment extends NMGFragment {
+public class SyllablesActivity extends NMGActivity {
 
     @BindView(R.id.syllable_add)
     FloatingActionButton add;
@@ -30,14 +31,11 @@ public class SyllablesFragment extends NMGFragment {
     private List<Syllable> syllables;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflate(inflater, R.layout.fragment_syllables, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_syllables);
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         syllablesListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
@@ -49,8 +47,7 @@ public class SyllablesFragment extends NMGFragment {
                         break;
                     case 1:
                         SyllableDeleteFragment syllableDeleteDialog = SyllableDeleteFragment.newInstance(syllable);
-                        syllableDeleteDialog.setTargetFragment(SyllablesFragment.this, 0);
-                        syllableDeleteDialog.show(getFragmentManager(), SyllableDeleteFragment.class.getCanonicalName());
+                        syllableDeleteDialog.show(getSupportFragmentManager(), SyllableDeleteFragment.class.getCanonicalName());
                         break;
                 }
                 return false;
@@ -79,26 +76,25 @@ public class SyllablesFragment extends NMGFragment {
 
     public void editSyllable(Syllable syllable) {
         SyllableSaveFragment syllableSaveDialog = SyllableSaveFragment.newInstance(syllable);
-        syllableSaveDialog.setTargetFragment(this, 0);
-        syllableSaveDialog.show(getFragmentManager(), SyllableSaveFragment.class.getCanonicalName());
+        syllableSaveDialog.show(getSupportFragmentManager(), SyllableSaveFragment.class.getCanonicalName());
     }
 
     public void updateSyllables() {
         syllables = SugarRecord.listAll(Syllable.class, "characters");
 
-        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(this, syllables);
+        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(getApplicationContext(), syllables);
         syllablesListView.setAdapter(syllablesAdapter);
 
         SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
-                SwipeMenuItem edit = new SwipeMenuItem(getActivity().getApplicationContext());
+                SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
                 edit.setBackground(android.R.color.darker_gray);
                 edit.setIcon(android.R.drawable.ic_menu_edit);
                 edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
                 menu.addMenuItem(edit);
 
-                SwipeMenuItem delete = new SwipeMenuItem(getActivity().getApplicationContext());
+                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
                 delete.setBackground(android.R.color.holo_red_light);
                 delete.setIcon(android.R.drawable.ic_menu_delete);
                 delete.setWidth(delete.getIcon().getMinimumWidth() * 2);

@@ -31,24 +31,27 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <com.astuetz.PagerSlidingTabStrip
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_below="@id/appbar"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/secondary_text_dark"
-            android:textColorPrimary="@android:color/primary_text_dark"
-            app:pstsIndicatorColor="?attr/colorAccent"
-            app:pstsIndicatorHeight="@dimen/pstsIndicatorHeight"
-            app:pstsShouldExpand="true"/>
-
-        <cherry_wave.nmg.NMGViewPager
-            android:id="@+id/container"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tabs"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:layout_below="@id/appbar"
+            tools:context=".view.syllables.SyllablesActivity">
+
+            <com.baoyz.swipemenulistview.SwipeMenuListView
+                android:id="@+id/syllables_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/syllable_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/app_margin"
+                android:src="@drawable/ic_add" />
+
+        </android.support.design.widget.CoordinatorLayout>
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

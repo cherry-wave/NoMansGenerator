@@ -1,11 +1,7 @@
-package cherry_wave.nmg.view.pattern;
+package cherry_wave.nmg.view.patterns;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -17,11 +13,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cherry_wave.nmg.NMGFragment;
+import cherry_wave.nmg.NMGActivity;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
 
-public class PatternsFragment extends NMGFragment {
+public class PatternsActivity extends NMGActivity {
 
     @BindView(R.id.pattern_add)
     FloatingActionButton add;
@@ -30,14 +26,11 @@ public class PatternsFragment extends NMGFragment {
     private List<Pattern> patterns;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflate(inflater, R.layout.fragment_patterns, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_patterns);
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         patternsListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
@@ -49,8 +42,7 @@ public class PatternsFragment extends NMGFragment {
                         break;
                     case 1:
                         PatternDeleteFragment patternDeleteDialog = PatternDeleteFragment.newInstance(pattern);
-                        patternDeleteDialog.setTargetFragment(PatternsFragment.this, 0);
-                        patternDeleteDialog.show(getFragmentManager(), PatternDeleteFragment.class.getCanonicalName());
+                        patternDeleteDialog.show(getSupportFragmentManager(), PatternDeleteFragment.class.getCanonicalName());
                         break;
                 }
                 return false;
@@ -79,26 +71,25 @@ public class PatternsFragment extends NMGFragment {
 
     public void editPattern(Pattern pattern) {
         PatternSaveFragment patternSaveDialog = PatternSaveFragment.newInstance(pattern);
-        patternSaveDialog.setTargetFragment(this, 0);
-        patternSaveDialog.show(getFragmentManager(), PatternSaveFragment.class.getCanonicalName());
+        patternSaveDialog.show(getSupportFragmentManager(), PatternSaveFragment.class.getCanonicalName());
     }
 
     public void updatePatterns() {
         patterns = SugarRecord.listAll(Pattern.class, "characters");
 
-        PatternsAdapter patternsAdapter = new PatternsAdapter(this, patterns);
+        PatternsAdapter patternsAdapter = new PatternsAdapter(getApplicationContext(), patterns);
         patternsListView.setAdapter(patternsAdapter);
 
         SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
-                SwipeMenuItem edit = new SwipeMenuItem(getActivity().getApplicationContext());
+                SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
                 edit.setBackground(android.R.color.darker_gray);
                 edit.setIcon(android.R.drawable.ic_menu_edit);
                 edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
                 menu.addMenuItem(edit);
 
-                SwipeMenuItem delete = new SwipeMenuItem(getActivity().getApplicationContext());
+                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
                 delete.setBackground(android.R.color.holo_red_light);
                 delete.setIcon(android.R.drawable.ic_menu_delete);
                 delete.setWidth(delete.getIcon().getMinimumWidth() * 2);

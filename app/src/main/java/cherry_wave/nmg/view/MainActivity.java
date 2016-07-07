@@ -1,13 +1,13 @@
 package cherry_wave.nmg.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,10 +26,9 @@ import cherry_wave.nmg.NMGViewPager;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
+import cherry_wave.nmg.view.settings.SettingsActivity;
 import cherry_wave.nmg.view.generator.GeneratorFragment;
 import cherry_wave.nmg.view.names.NamesFragment;
-import cherry_wave.nmg.view.pattern.PatternsFragment;
-import cherry_wave.nmg.view.syllables.SyllablesFragment;
 import lombok.Getter;
 
 public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeListener {
@@ -37,8 +36,6 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
     private static final String TAG = MainActivity.class.getCanonicalName();
     private static final String INITIAL_IMPORT = "initialImport";
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.container)
     NMGViewPager viewPager;
     @BindArray(R.array.sections)
@@ -54,8 +51,7 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar.setTitle(R.string.app_title);
-        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_title);
 
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -102,6 +98,7 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
@@ -134,12 +131,6 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
                     return new GeneratorFragment();
                 case 1:
                     return new NamesFragment();
-                case 2:
-                    return new PatternsFragment();
-                case 3:
-                    return new SyllablesFragment();
-                case 4:
-                    return new SyllablesFragment();
             }
             return null;
         }

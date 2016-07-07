@@ -3,11 +3,8 @@
     <string-array name="sections">
         <item name="generator">Generator</item>
         <item name="names">Namen</item>
-        <item name="names">Schemas</item>
-        <item name="syllables">Silben</item>
     </string-array>
 
-    <string name="action_settings">Einstellungen</string>
     <string name="cancel">Abbrechen</string>
     <string name="save">Speichern</string>
     <string name="generator_empty_state">Wische nach unten um Namen zu generieren</string>
@@ -33,4 +30,18 @@
     <string name="edit">Bearbeiten</string>
     <string name="generated_names_amount_info">Anzahl der generierten Namen</string>
     <string name="title_save_name">Namen speichern</string>
+    <string name="preference_about_app">Über die App</string>
+    <string name="preference_about_app_helpers">Helfer</string>
+    <string name="preference_about_app_helpers_summary">Mein großer Dank geht an diese Leute!</string>
+    <string name="preference_about_app_used_libraries">Benutzte Bibliotheken</string>
+    <string name="preference_about_app_used_libraries_summary">Die Android-Bibliotheken die ich benutzt habe um diese App so fancy zu machen.</string>
+    <string name="preference_donate">Spenden</string>
+    <string name="preference_donate_summary">Du kannst mir für die Erstellung dieser App danken indem du mich mit Geld beschmeißt =D</string>
+    <string name="preference_patterns">Schemas</string>
+    <string name="preference_syllables">Silben</string>
+    <string name="preference_patterns_summary">Bearbeite die Schemas die für die Namensgenerierung verwendet werden.</string>
+    <string name="preference_syllables_summary">Bearbeite die Silben die für die Namensgenerierung verwendet werden.</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="title_activity_patterns">Schemas</string>
+    <string name="title_activity_syllables">Silben</string>
 </resources>

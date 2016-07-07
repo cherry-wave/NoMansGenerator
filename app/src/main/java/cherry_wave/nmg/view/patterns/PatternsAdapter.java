@@ -1,5 +1,6 @@
-package cherry_wave.nmg.view.pattern;
+package cherry_wave.nmg.view.patterns;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,8 @@ import cherry_wave.nmg.model.Pattern;
 
 public class PatternsAdapter extends ArrayAdapter<Pattern> {
 
-    private PatternsFragment patternsFragment;
-
-    public PatternsAdapter(PatternsFragment patternsFragment, List<Pattern> patterns) {
-        super(patternsFragment.getContext(), R.layout.list_item_pattern, patterns);
-        this.patternsFragment = patternsFragment;
+    public PatternsAdapter(Context context, List<Pattern> patterns) {
+        super(context, R.layout.list_item_pattern, patterns);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package cherry_wave.nmg.view.syllables;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,8 @@ import cherry_wave.nmg.model.Syllable;
 
 public class SyllablesAdapter extends ArrayAdapter<Syllable> {
 
-    private static final String TAG = SyllablesAdapter.class.getCanonicalName();
-
-    private SyllablesFragment syllablesFragment;
-
-    public SyllablesAdapter(SyllablesFragment syllablesFragment, List<Syllable> syllables) {
-        super(syllablesFragment.getContext(), R.layout.list_item_syllable, syllables);
-        this.syllablesFragment = syllablesFragment;
+    public SyllablesAdapter(Context context, List<Syllable> syllables) {
+        super(context, R.layout.list_item_syllable, syllables);
     }
 
     @Override

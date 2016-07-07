@@ -19,11 +19,9 @@ import cherry_wave.nmg.NMGDialogFragment;
 
 public class SyllableSaveFragment extends NMGDialogFragment {
 
-    private static final String TAG = SyllableSaveFragment.class.getCanonicalName();
-
     private static final String ARG_SYLLABLE = "syllable";
 
-    private SyllablesFragment syllablesFragment;
+    private SyllablesActivity syllablesActivity;
     private Syllable syllable;
 
     public static SyllableSaveFragment newInstance(Syllable syllable) {
@@ -37,7 +35,7 @@ public class SyllableSaveFragment extends NMGDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        syllablesFragment = (SyllablesFragment) getTargetFragment();
+        syllablesActivity = (SyllablesActivity) getActivity();
         syllable = Parcels.unwrap(getArguments().getParcelable(ARG_SYLLABLE));
         if (syllable == null) {
             syllable = new Syllable("");
@@ -89,7 +87,7 @@ public class SyllableSaveFragment extends NMGDialogFragment {
 
     private void save() {
         SugarRecord.save(syllable);
-        syllablesFragment.updateSyllables();
+        syllablesActivity.updateSyllables();
     }
 
 }

@@ -1,4 +1,4 @@
-package cherry_wave.nmg.view.pattern;
+package cherry_wave.nmg.view.patterns;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
 
     private static final String ARG_PATTERN = "pattern";
 
-    private PatternsFragment patternsFragment;
+    private PatternsActivity patternsActivity;
     private Pattern pattern;
 
     public static PatternSaveFragment newInstance(Pattern pattern) {
@@ -35,7 +35,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        patternsFragment = (PatternsFragment) getTargetFragment();
+        patternsActivity = (PatternsActivity) getActivity();
         pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
         if (pattern == null) {
             pattern = new Pattern("");
@@ -87,7 +87,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
 
     private void save() {
         SugarRecord.save(pattern);
-        patternsFragment.updatePatterns();
+        patternsActivity.updatePatterns();
     }
 
 }
