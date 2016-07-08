@@ -18,26 +18,24 @@
         android:key="preference_about_app"
         android:title="@string/preference_about_app">
 
-        <PreferenceScreen
+        <Preference
             android:key="preference_about_app_used_libraries"
-            android:persistent="false"
             android:summary="@string/preference_about_app_used_libraries_summary"
-            android:title="@string/preference_about_app_used_libraries" />
+            android:title="@string/title_activity_used_libraries">
+            <intent
+                android:targetClass="cherry_wave.nmg.view.settings.UsedLibrariesActivity"
+                android:targetPackage="cherry_wave.nmg" />
+        </Preference>
 
-        <PreferenceScreen
+        <Preference
             android:key="preference_about_app_helpers"
-            android:persistent="false"
             android:summary="@string/preference_about_app_helpers_summary"
-            android:title="@string/preference_about_app_helpers" />
+            android:title="@string/preference_about_app_helpers">
+            <intent
+                android:targetClass="cherry_wave.nmg.view.settings.HelpersActivity"
+                android:targetPackage="cherry_wave.nmg" />
+        </Preference>
 
     </PreferenceCategory>
-
-    <Preference
-        android:summary="@string/preference_donate_summary"
-        android:title="@string/preference_donate">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="http://www.example.com" />
-    </Preference>
 
 </PreferenceScreen>

@@ -33,7 +33,7 @@
     <string name="preference_about_app">Über die App</string>
     <string name="preference_about_app_helpers">Helfer</string>
     <string name="preference_about_app_helpers_summary">Mein großer Dank geht an diese Leute!</string>
-    <string name="preference_about_app_used_libraries">Benutzte Bibliotheken</string>
+    <string name="title_activity_used_libraries">Benutzte Bibliotheken</string>
     <string name="preference_about_app_used_libraries_summary">Die Android-Bibliotheken die ich benutzt habe um diese App so fancy zu machen.</string>
     <string name="preference_donate">Spenden</string>
     <string name="preference_donate_summary">Du kannst mir für die Erstellung dieser App danken indem du mich mit Geld beschmeißt =D</string>

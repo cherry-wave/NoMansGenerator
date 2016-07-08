@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:summary="https://github.com/jpardogo/PagerSlidingTabStrip"
+        android:title="Android PagerSlidingTabStrip">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/jpardogo/PagerSlidingTabStrip" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/JakeWharton/butterknife"
+        android:title="Butter Knife">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/JakeWharton/butterknife" />
+    </Preference>
+
+    <Preference
+        android:summary="http://commons.apache.org/proper/commons-lang"
+        android:title="Commons Lang">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="http://commons.apache.org/proper/commons-lang" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/google/gson"
+        android:title="google-gson">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/google/gson" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/afollestad/material-dialogs"
+        android:title="Material Dialogs">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/afollestad/material-dialogs" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/johncarl81/parceler"
+        android:title="Parceler">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/johncarl81/parceler" />
+    </Preference>
+
+    <Preference
+        android:summary="https://projectlombok.org"
+        android:title="Project Lombok">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://projectlombok.org" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/satyan/sugar"
+        android:title="Sugar ORM">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/satyan/sugar" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/baoyongzhang/SwipeMenuListView"
+        android:title="SwipeMenuListView">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/baoyongzhang/SwipeMenuListView" />
+    </Preference>
+</PreferenceScreen>

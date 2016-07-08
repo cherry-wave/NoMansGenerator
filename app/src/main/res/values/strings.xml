@@ -35,7 +35,7 @@
     <string name="preference_donate">Donate</string>
     <string name="preference_donate_summary">You can thank me for creating this app by throwing money at me =D</string>
     <string name="preference_about_app_helpers">Helpers</string>
-    <string name="preference_about_app_used_libraries">Used Libraries</string>
+    <string name="title_activity_used_libraries">Used Libraries</string>
     <string name="preference_about_app">About app</string>
     <string name="preference_patterns">Patterns</string>
     <string name="preference_syllables">Syllables</string>
