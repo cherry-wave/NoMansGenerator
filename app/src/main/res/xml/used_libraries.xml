@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
-        android:summary="https://github.com/jpardogo/PagerSlidingTabStrip"
-        android:title="Android PagerSlidingTabStrip">
+        android:summary="http://commons.apache.org/proper/commons-lang"
+        android:title="Apache Commons Lang">
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://github.com/jpardogo/PagerSlidingTabStrip" />
+            android:data="http://commons.apache.org/proper/commons-lang" />
     </Preference>
 
     <Preference
@@ -17,16 +17,8 @@
     </Preference>
 
     <Preference
-        android:summary="http://commons.apache.org/proper/commons-lang"
-        android:title="Commons Lang">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="http://commons.apache.org/proper/commons-lang" />
-    </Preference>
-
-    <Preference
         android:summary="https://github.com/google/gson"
-        android:title="google-gson">
+        android:title="Gson">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/google/gson" />
@@ -38,6 +30,14 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/afollestad/material-dialogs" />
+    </Preference>
+
+    <Preference
+        android:summary="https://github.com/jpardogo/PagerSlidingTabStrip"
+        android:title="PagerSlidingTabStrip">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/jpardogo/PagerSlidingTabStrip" />
     </Preference>
 
     <Preference
