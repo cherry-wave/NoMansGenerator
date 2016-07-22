@@ -17,7 +17,7 @@ For adventurous people, the patterns with which the names are generated are edit
 * [Material Dialogs](https://github.com/afollestad/material-dialogs)
 * [PagerSlidingTabStrip](https://github.com/jpardogo/PagerSlidingTabStrip)
 * [Parceler](https://github.com/johncarl81/parceler)
-* [Project Lombok]("https://projectlombok.org)
+* [Project Lombok](https://projectlombok.org)
 * [Sugar ORM](https://github.com/satyan/sugar)
 * [SwipeMenuListView](https://github.com/baoyongzhang/SwipeMenuListView)
 
