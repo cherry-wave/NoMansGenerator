@@ -27,15 +27,6 @@
                 android:targetPackage="cherry_wave.nmg" />
         </Preference>
 
-        <Preference
-            android:key="preference_about_app_helpers"
-            android:summary="@string/preference_about_app_helpers_summary"
-            android:title="@string/preference_about_app_helpers">
-            <intent
-                android:targetClass="cherry_wave.nmg.view.settings.HelpersActivity"
-                android:targetPackage="cherry_wave.nmg" />
-        </Preference>
-
     </PreferenceCategory>
 
 </PreferenceScreen>
