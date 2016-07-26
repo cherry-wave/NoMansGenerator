@@ -14,12 +14,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.NMGActivity;
+import cherry_wave.nmg.NMGSwipeMenuCreator;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
+import lombok.Getter;
 
 public class PatternsActivity extends NMGActivity {
 
     @BindView(R.id.pattern_add)
+    @Getter
     FloatingActionButton add;
     @BindView(R.id.patterns_list)
     SwipeMenuListView patternsListView;
@@ -80,23 +83,7 @@ public class PatternsActivity extends NMGActivity {
         PatternsAdapter patternsAdapter = new PatternsAdapter(getApplicationContext(), patterns);
         patternsListView.setAdapter(patternsAdapter);
 
-        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
-            @Override
-            public void create(SwipeMenu menu) {
-                SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
-                edit.setBackground(R.color.edit);
-                edit.setIcon(android.R.drawable.ic_menu_edit);
-                edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
-                menu.addMenuItem(edit);
-
-                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
-                delete.setBackground(R.color.delete);
-                delete.setIcon(android.R.drawable.ic_menu_delete);
-                delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
-                menu.addMenuItem(delete);
-            }
-        };
-        patternsListView.setMenuCreator(swipeMenuCreator);
+        patternsListView.setMenuCreator(new NMGSwipeMenuCreator(this));
 
         add.show();
     }

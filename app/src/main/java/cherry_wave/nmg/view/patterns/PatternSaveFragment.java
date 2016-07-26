@@ -62,6 +62,7 @@ public class PatternSaveFragment extends NMGDialogFragment {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        patternsActivity.getAdd().show();
                         dialog.dismiss();
                     }
                 })

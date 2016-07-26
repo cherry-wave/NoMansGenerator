@@ -22,12 +22,15 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.NMGActivity;
 import cherry_wave.nmg.NMGFragment;
+import cherry_wave.nmg.NMGSwipeMenuCreator;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
+import lombok.Getter;
 
 public class SyllablesActivity extends NMGActivity {
 
     @BindView(R.id.syllable_add)
+    @Getter
     FloatingActionButton add;
     @BindView(R.id.syllables_list)
     SwipeMenuListView syllablesListView;
@@ -85,34 +88,10 @@ public class SyllablesActivity extends NMGActivity {
     public void updateSyllables() {
         syllables = SugarRecord.listAll(Syllable.class, "characters");
 
-        List<String> strings = new ArrayList<>();
-        for (Syllable syllable:syllables
-             ) {
-            strings.add(syllable.getCharacters());
-        }
-
-        ArrayAdapter simpleCursorAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, strings);
+        SyllablesAdapter simpleCursorAdapter = new SyllablesAdapter(this, syllables);
         syllablesListView.setAdapter(simpleCursorAdapter);
 
-//        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(getApplicationContext(), syllables);
-
-//        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
-//            @Override
-//            public void create(SwipeMenu menu) {
-//                SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
-//                edit.setBackground(android.R.color.darker_gray);
-//                edit.setIcon(android.R.drawable.ic_menu_edit);
-//                edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
-//                menu.addMenuItem(edit);
-//
-//                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
-//                delete.setBackground(android.R.color.holo_red_light);
-//                delete.setIcon(android.R.drawable.ic_menu_delete);
-//                delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
-//                menu.addMenuItem(delete);
-//            }
-//        };
-//        syllablesListView.setMenuCreator(swipeMenuCreator);
+        syllablesListView.setMenuCreator(new NMGSwipeMenuCreator(this));
 
         add.show();
     }

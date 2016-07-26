@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.SortedSet;
@@ -25,6 +25,7 @@ import cherry_wave.nmg.NMGFragment;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.controller.PatternUtils;
 import cherry_wave.nmg.controller.SyllableUtils;
+import cherry_wave.nmg.model.Name;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
 
@@ -100,7 +101,12 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         } else if (!patternsContainConsonantStart && vowelSyllables.isEmpty()) {
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
         } else {
-            SortedSet<String> generatedNames = new TreeSet<>();
+            SortedSet<Name> generatedNames = new TreeSet<>(new Comparator<Name>() {
+                @Override
+                public int compare(Name name1, Name name2) {
+                    return name1.getCharacters().compareTo(name2.getCharacters());
+                }
+            });
             Random anyRandom = new Random();
             Random consonantRandom = new Random();
             Random vowelRandom = new Random();
@@ -150,15 +156,10 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                     // add non pattern content
                     name.append(append);
                 }
-                String generatedName = name.toString();
-                if(generatedNames.contains(generatedName)) {
-                    i--;
-                    continue;
-                }
-                generatedNames.add(generatedName);
+                generatedNames.add(new Name(name.toString()));
             }
 
-            GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames.toArray(new String[generatedNames.size()]));
+            GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames.toArray(new Name[generatedNames.size()]));
             names.setAdapter(generatedNamesAdapter);
 
             generatorEmptyState.setVisibility(View.GONE);

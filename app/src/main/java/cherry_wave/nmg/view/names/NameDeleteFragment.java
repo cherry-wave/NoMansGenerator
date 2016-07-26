@@ -53,6 +53,7 @@ public class NameDeleteFragment extends NMGDialogFragment {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        namesFragment.getAdd().show();
                         dialog.dismiss();
                     }
                 });

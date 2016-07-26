@@ -30,17 +30,11 @@
     <string name="generator_info_no_patterns">You have no active patterns. Please activate or create some.</string>
     <string name="generator_info_no_consonant_syllables">You only have active patterns which require consonants but no active syllables that start with one.</string>
     <string name="generator_info_no_vowel_syllables">You only have active patterns which require vowels but no active syllables that start with one.</string>
-    <string name="edit">Edit</string>
-    <string name="generated_names_amount_info">Amount of generated names</string>
-    <string name="preference_donate">Donate</string>
-    <string name="preference_donate_summary">You can thank me for creating this app by throwing money at me =D</string>
-    <string name="preference_about_app_helpers">Helpers</string>
     <string name="title_activity_used_libraries">Used Libraries</string>
     <string name="preference_about_app">About app</string>
     <string name="preference_patterns">Patterns</string>
     <string name="preference_syllables">Syllables</string>
     <string name="preference_about_app_used_libraries_summary">The android libraries I used to make this app so fancy.</string>
-    <string name="preference_about_app_helpers_summary">Big thanks goes to these people!</string>
     <string name="preference_patterns_summary">Edit the patterns used for name generation.</string>
     <string name="preference_syllables_summary">Edit the syllables used for name generation.</string>
     <string name="title_activity_settings">Settings</string>

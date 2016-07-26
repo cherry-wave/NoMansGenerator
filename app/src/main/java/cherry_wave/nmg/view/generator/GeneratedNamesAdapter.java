@@ -6,31 +6,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.orm.SugarRecord;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Name;
+import cherry_wave.nmg.model.Pattern;
+import cherry_wave.nmg.model.Syllable;
 
-public class GeneratedNamesAdapter extends ArrayAdapter<String> {
+public class GeneratedNamesAdapter extends ArrayAdapter<Name> {
 
-    public GeneratedNamesAdapter(Context context, String[] generatedNames) {
-        super(context, R.layout.list_item_generated_name, generatedNames);
+    public GeneratedNamesAdapter(Context context, Name[] names) {
+        super(context, R.layout.list_item_generated_name, names);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String generatedName = getItem(position);
+        Name name = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_generated_name, parent, false);
-            new ViewHolder(convertView, generatedName);
         }
 
+        new ViewHolder(convertView, name);
         return convertView;
     }
 
@@ -41,20 +46,22 @@ public class GeneratedNamesAdapter extends ArrayAdapter<String> {
         @BindView(R.id.generated_name_save)
         CheckBox save;
 
-        private Name generatedName;
+        private Name name;
 
-        public ViewHolder(View view, String generatedName) {
+        public ViewHolder(View view, Name name) {
             ButterKnife.bind(this, view);
-            this.generatedName = new Name(generatedName);
-            characters.setText(generatedName);
+            this.name = name;
+            characters.setText(name.getCharacters());
+            // lookup if name is saved
+            save.setChecked(SugarRecord.findById(Name.class, name.getId()) != null);
         }
 
         @OnCheckedChanged(R.id.generated_name_save)
-        void saveDelete() {
+        void deActivate() {
             if(save.isChecked()) {
-                SugarRecord.save(generatedName);
+                SugarRecord.save(name);
             } else {
-                SugarRecord.delete(generatedName);
+                SugarRecord.delete(name);
             }
         }
 

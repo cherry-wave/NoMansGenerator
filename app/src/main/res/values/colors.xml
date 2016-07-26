@@ -3,6 +3,4 @@
     <color name="colorPrimary">#3F3F3F</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#B7494E</color>
-    <color name="edit">#4CAF50</color>
-    <color name="delete">#F44336</color>
 </resources>

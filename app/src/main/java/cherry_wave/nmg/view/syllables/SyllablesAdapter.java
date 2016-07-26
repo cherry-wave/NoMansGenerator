@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import cherry_wave.nmg.R;
+import cherry_wave.nmg.model.Name;
+import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
 
 public class SyllablesAdapter extends ArrayAdapter<Syllable> {
@@ -28,11 +31,11 @@ public class SyllablesAdapter extends ArrayAdapter<Syllable> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Syllable syllable = getItem(position);
 
-        if(convertView == null) {
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_syllable, parent, false);
-            new ViewHolder(convertView, syllable);
         }
 
+        new ViewHolder(convertView, syllable);
         return convertView;
     }
 

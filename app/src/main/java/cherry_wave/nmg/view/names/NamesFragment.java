@@ -20,12 +20,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.NMGFragment;
+import cherry_wave.nmg.NMGSwipeMenuCreator;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Name;
+import lombok.Getter;
 
 public class NamesFragment extends NMGFragment {
 
     @BindView(R.id.name_add)
+    @Getter
     FloatingActionButton add;
     @BindView(R.id.names_list)
     SwipeMenuListView namesListView;
@@ -95,23 +98,7 @@ public class NamesFragment extends NMGFragment {
         ArrayAdapter<String> namesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, namesCharacters);
         namesListView.setAdapter(namesAdapter);
 
-        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
-            @Override
-            public void create(SwipeMenu menu) {
-                SwipeMenuItem edit = new SwipeMenuItem(getActivity().getApplicationContext());
-                edit.setBackground(R.color.edit);
-                edit.setIcon(android.R.drawable.ic_menu_edit);
-                edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
-                menu.addMenuItem(edit);
-
-                SwipeMenuItem delete = new SwipeMenuItem(getActivity().getApplicationContext());
-                delete.setBackground(R.color.delete);
-                delete.setIcon(android.R.drawable.ic_menu_delete);
-                delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
-                menu.addMenuItem(delete);
-            }
-        };
-        namesListView.setMenuCreator(swipeMenuCreator);
+        namesListView.setMenuCreator(new NMGSwipeMenuCreator(getActivity()));
 
         add.show();
     }

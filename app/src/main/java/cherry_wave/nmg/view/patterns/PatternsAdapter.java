@@ -30,9 +30,9 @@ public class PatternsAdapter extends ArrayAdapter<Pattern> {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_pattern, parent, false);
-            new ViewHolder(convertView, pattern);
         }
 
+        new ViewHolder(convertView, pattern);
         return convertView;
     }
 
