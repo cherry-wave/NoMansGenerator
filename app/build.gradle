@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "cherry_wave.nmg"
-        minSdkVersion 19
+        minSdkVersion 21 // todo make it work for 19
         targetSdkVersion 24
         versionCode 2
         versionName "1.0.0"
