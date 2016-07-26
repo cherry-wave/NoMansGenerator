@@ -13,6 +13,7 @@ For adventurous people, the patterns with which the names are generated are edit
 ## Dependencies
 * [Apache Commons Lang](http://commons.apache.org/proper/commons-lang)
 * [Butter Knife](https://github.com/JakeWharton/butterknife)
+* [DiscreteSeekBar](https://github.com/AnderWeb/discreteSeekBar)
 * [Gson](https://github.com/google/gson)
 * [Material Dialogs](https://github.com/afollestad/material-dialogs)
 * [PagerSlidingTabStrip](https://github.com/jpardogo/PagerSlidingTabStrip)
