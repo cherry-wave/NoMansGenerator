@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="sections">
+        <item name="generator">Generator</item>
+        <item name="names">Names</item>
+    </string-array>
+
+    <string name="app_name" translatable="false">NMG</string>
+    <string name="app_title" translatable="false">No Man\'s Generator</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="generator_empty_state">Swipe down to generate names</string>
+    <string name="invalid_syllable_character">Syllables can only contain lowercase, unaccented, alphabetic characters</string>
+    <string name="invalid_syllable_length">Syllables must be at least two characters long</string>
+    <string name="invalid_syllable_vowel">Syllables must contain at least one vowel</string>
+    <string name="invalid_pattern_no_braces">Must at least contain one pattern in curly braces {}</string>
+    <string name="invalid_pattern_uneven_braces">Must have the same amount of opening { and closing } curly braces</string>
+    <string name="invalid_pattern_start">Pattern must start with one of these characters: X/x (any), C/c (consonant), V/v (vowel)</string>
+    <string name="invalid_pattern_length">Pattern length must be at least 1 and max. 9</string>
+    <string name="invalid_pattern_range">Pattern range must be at least 1-1 and max.9-9</string>
+    <string name="confirm_delete_syllable">Delete syllable?</string>
+    <string name="confirm_delete_pattern">Delete pattern?</string>
+    <string name="confirm_delete_name">Delete name?</string>
+    <string name="delete">Delete</string>
+    <string name="title_save_pattern">Save pattern</string>
+    <string name="title_save_syllable">Save syllable</string>
+    <string name="title_save_name">Save name</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="title_generator_info">Info</string>
+    <string name="generator_info_no_syllables">You have no active syllables. Please activate or create some.</string>
+    <string name="generator_info_no_patterns">You have no active patterns. Please activate or create some.</string>
+    <string name="generator_info_no_consonant_syllables">You only have active patterns which require consonants but no active syllables that start with one.</string>
+    <string name="generator_info_no_vowel_syllables">You only have active patterns which require vowels but no active syllables that start with one.</string>
+    <string name="title_activity_used_libraries">Used Libraries</string>
+    <string name="preference_about_app">About app</string>
+    <string name="preference_patterns">Patterns</string>
+    <string name="preference_syllables">Syllables</string>
+    <string name="preference_about_app_used_libraries_summary">The android libraries I used to make this app so fancy.</string>
+    <string name="preference_patterns_summary">Edit the patterns used for name generation.</string>
+    <string name="preference_syllables_summary">Edit the syllables used for name generation.</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_patterns">Patterns</string>
+    <string name="title_activity_syllables">Syllables</string>
+    <string name="generated_names_amount_selector">Generate %s</string>
+    <string name="preference_feedback">Send feedback</string>
+    <string name="preference_feedback_url">https://goo.gl/forms/BmL7Zh64fiJOjwNa2</string>
+    <string name="preference_feedback_summary">Opens in your browser</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sections">
+        <item name="generator">Generator</item>
+        <item name="names">Namen</item>
+    </string-array>
+
+    <string name="cancel">Abbrechen</string>
+    <string name="save">Speichern</string>
+    <string name="generator_empty_state">Wische nach unten um Namen zu generieren</string>
+    <string name="confirm_delete_syllable">Silbe löschen?</string>
+    <string name="delete">Löschen</string>
+    <string name="confirm_delete_pattern">Schema löschen?</string>
+    <string name="title_save_pattern">Schema speichern</string>
+    <string name="title_save_syllable">Silbe speichern</string>
+    <string name="invalid_pattern_no_braces">Muss mindestens ein Schema in geschweiften Klammern {} enthalten</string>
+    <string name="invalid_pattern_length">Die Länge eines Schemas muss mindestens 1, maximal 9 betragen</string>
+    <string name="invalid_pattern_range">Die Reichweite eines Schemas muss mindestens 1-1, maximal 9-9 betragen</string>
+    <string name="invalid_pattern_start">Ein Schema muss mit einem dieser Buchstaben beginnen: X/x (egal), C/c (Konsonant), V/v (Vokal)</string>
+    <string name="invalid_syllable_character">Silben dürfen nur kleingeschriebene, unbetone Buchstaben enthalten</string>
+    <string name="invalid_syllable_length">Silben müssen mindestens zwei Buchstaben lang sein</string>
+    <string name="invalid_syllable_vowel">Silben müssen mindestens einen Vokal enthalten</string>
+    <string name="invalid_pattern_uneven_braces">Muss dieselbe Anzahl an öffnenden { und schließenden } geschweiften Klammern haben</string>
+    <string name="title_generator_info">Information</string>
+    <string name="generator_info_no_syllables">Du hast keine aktiven Silben. Bitte aktiviere oder erstelle welche.</string>
+    <string name="generator_info_no_patterns">Du hast keine aktiven Schemas. Bitte aktiviere oder erstelle welche.</string>
+    <string name="generator_info_no_consonant_syllables">Du hast nur aktive Schemas die Konsonanten benötigen aber keine aktiven Silben die mit einem anfangen. Bitte aktiviere oder erstelle welche.</string>
+    <string name="generator_info_no_vowel_syllables">Du hast nur aktive Schemas die Vokale benötigen aber keine aktiven Silben die mit einem anfangen. Bitte aktiviere oder erstelle welche.</string>
+    <string name="confirm_delete_name">Namen löschen?</string>
+    <string name="title_save_name">Namen speichern</string>
+    <string name="preference_about_app">Über die App</string>
+    <string name="title_activity_used_libraries">Benutzte Bibliotheken</string>
+    <string name="preference_about_app_used_libraries_summary">Die Android-Bibliotheken die ich benutzt habe um diese App so fancy zu machen.</string>
+    <string name="preference_patterns">Schemas</string>
+    <string name="preference_syllables">Silben</string>
+    <string name="preference_patterns_summary">Bearbeite die Schemas die für die Namensgenerierung verwendet werden.</string>
+    <string name="preference_syllables_summary">Bearbeite die Silben die für die Namensgenerierung verwendet werden.</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="title_activity_patterns">Schemas</string>
+    <string name="title_activity_syllables">Silben</string>
+    <string name="generated_names_amount_selector">Generiere %s</string>
+    <string name="preference_feedback">Sende Feedback</string>
+    <string name="preference_feedback_summary">Öffnet sich in deinem Browser</string>
+    <string name="preference_feedback_url">https://goo.gl/forms/Qnxef5ucemvfNIl82</string>
+</resources>

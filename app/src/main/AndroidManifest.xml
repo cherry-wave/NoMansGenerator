@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cherry_wave.nmg">
+
+    <!-- todo android:backupAgent=""-->
+    <application
+        android:allowBackup="false"
+        android:name="com.orm.SugarApp"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".view.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".view.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainActivity" />
+        </activity>
+        <activity
+            android:name=".view.settings.UsedLibrariesActivity"
+            android:label="@string/title_activity_used_libraries"
+            android:parentActivityName=".view.settings.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.settings.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".view.patterns.PatternsActivity"
+            android:label="@string/title_activity_patterns"
+            android:parentActivityName=".view.settings.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.settings.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".view.syllables.SyllablesActivity"
+            android:label="@string/title_activity_syllables"
+            android:parentActivityName=".view.settings.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.settings.SettingsActivity" />
+        </activity>
+    </application>
+
+</manifest>
