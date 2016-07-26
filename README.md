@@ -1,8 +1,8 @@
 # No Man's Generator
 
-I created this unofficial android app to give me some inspiration on planet and creature names in No Man's Sky.
+This is an unofficial Android app for No Man's Sky.
 
-Of course it can be used for other lore too ;)
+I created it to give me some inspiration on planet and creature names. Of course it can be used for other lore too ;)
 
 The app generates names out of a syllable base. You can save generated names and afterwards edit/delete them or even add your own names right away.
 
