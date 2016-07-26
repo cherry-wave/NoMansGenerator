@@ -1,12 +1,6 @@
 # No Man's Generator
 
-<<<<<<< HEAD
 This is an unofficial android app for Hello Games' "No Man's Sky"
-
-I created this app to give me some inspiration on planet and creature names.
-=======
-This is an unofficial Android app for No Man's Sky.
->>>>>>> refs/remotes/origin/master
 
 I created it to give me some inspiration on planet and creature names. Of course it can be used for other lore too ;)
 
@@ -15,8 +9,6 @@ The app generates names out of a syllable base. You can save generated names and
 The app provides a set of syllables on install. You can add/delete/edit and activate/deactivate them.
 
 For adventurous people, the patterns with which the names are generated are editable too!
-<<<<<<< HEAD
-=======
 
 ## Dependencies
 * [Apache Commons Lang](http://commons.apache.org/proper/commons-lang)
@@ -54,4 +46,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
->>>>>>> refs/remotes/origin/master
