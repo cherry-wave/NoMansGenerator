@@ -1,6 +1,5 @@
 # No Man's Generator
 
-HEAD
 This is an unofficial android app for Hello Games' "No Man's Sky"
 
 I created it to give me some inspiration on planet and creature names. Of course it can be used for other lore too ;)
