@@ -84,13 +84,13 @@ public class PatternsActivity extends NMGActivity {
             @Override
             public void create(SwipeMenu menu) {
                 SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
-                edit.setBackground(android.R.color.darker_gray);
+                edit.setBackground(R.color.edit);
                 edit.setIcon(android.R.drawable.ic_menu_edit);
                 edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
                 menu.addMenuItem(edit);
 
                 SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
-                delete.setBackground(android.R.color.holo_red_light);
+                delete.setBackground(R.color.delete);
                 delete.setIcon(android.R.drawable.ic_menu_delete);
                 delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
                 menu.addMenuItem(delete);

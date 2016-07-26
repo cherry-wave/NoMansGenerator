@@ -2,6 +2,7 @@ package cherry_wave.nmg;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

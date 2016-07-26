@@ -44,4 +44,8 @@
     <string name="title_activity_settings">Einstellungen</string>
     <string name="title_activity_patterns">Schemas</string>
     <string name="title_activity_syllables">Silben</string>
+    <string name="generated_names_amount_selector">Generiere %s</string>
+    <string name="preference_feedback">Sende Feedback</string>
+    <string name="preference_feedback_summary">Öffnet sich in deinem Browser</string>
+    <string name="preference_feedback_url">https://goo.gl/forms/Qnxef5ucemvfNIl82</string>
 </resources>

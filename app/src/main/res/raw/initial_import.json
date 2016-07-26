@@ -1,6 +1,6 @@
 {
   "patternsCharacters": [
-    "{X1-9}",
+    "{X2-9}",
     "{V1} {C1}'{c1-4}"
   ],
   "syllablesCharacters": [

@@ -46,4 +46,8 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_patterns">Patterns</string>
     <string name="title_activity_syllables">Syllables</string>
+    <string name="generated_names_amount_selector">Generate %s</string>
+    <string name="preference_feedback">Send feedback</string>
+    <string name="preference_feedback_url">https://goo.gl/forms/BmL7Zh64fiJOjwNa2</string>
+    <string name="preference_feedback_summary">Opens in your browser</string>
 </resources>

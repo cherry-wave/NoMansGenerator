@@ -8,15 +8,9 @@ public class GsonTest {
 
     @Test
     public void testToGson() throws Exception {
-//        Gson gson = new Gson();
-//        String json = gson.toJson(new InitialImport());
-//        System.out.println(json);
-
-        String string = "jdK10ds3TEST"; // jdK10TESTds3TEST / jdK10TESTds3
-        if(string.toUpperCase().endsWith("TEST")) {
-            string = string.substring(0, string.length() -4);
-        }
-        System.out.println(string);
+        Gson gson = new Gson();
+        String json = gson.toJson(new InitialImport());
+        System.out.println(json);
     }
 
     class InitialImport {

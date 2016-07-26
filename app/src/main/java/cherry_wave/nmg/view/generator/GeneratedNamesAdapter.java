@@ -26,10 +26,12 @@ public class GeneratedNamesAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         String generatedName = getItem(position);
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_generated_name, parent, false);
-        new ViewHolder(view, generatedName);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_generated_name, parent, false);
+            new ViewHolder(convertView, generatedName);
+        }
 
-        return view;
+        return convertView;
     }
 
     class ViewHolder {
@@ -39,21 +41,20 @@ public class GeneratedNamesAdapter extends ArrayAdapter<String> {
         @BindView(R.id.generated_name_save)
         CheckBox save;
 
-        private String generatedName;
+        private Name generatedName;
 
         public ViewHolder(View view, String generatedName) {
             ButterKnife.bind(this, view);
-            this.generatedName = generatedName;
+            this.generatedName = new Name(generatedName);
             characters.setText(generatedName);
         }
 
         @OnCheckedChanged(R.id.generated_name_save)
         void saveDelete() {
-            Name name = new Name(generatedName);
             if(save.isChecked()) {
-                SugarRecord.save(name);
+                SugarRecord.save(generatedName);
             } else {
-                SugarRecord.delete(name);
+                SugarRecord.delete(generatedName);
             }
         }
 

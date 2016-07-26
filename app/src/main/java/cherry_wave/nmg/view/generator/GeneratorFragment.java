@@ -5,12 +5,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java.util.List;
 import java.util.Random;
@@ -25,7 +28,7 @@ import cherry_wave.nmg.controller.SyllableUtils;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
 
-public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener, SeekBar.OnSeekBarChangeListener {
+public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener, SeekBar.OnSeekBarChangeListener, DiscreteSeekBar.OnProgressChangeListener {
 
     private static final String GENERATED_NAMES_AMOUNT = "generatedNamesAmount";
 
@@ -40,9 +43,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
     @BindView(R.id.generator_empty_state)
     TextView generatorEmptyState;
     @BindView(R.id.generated_names_amount_selector)
-    SeekBar amountSelector;
-    @BindView(R.id.generated_names_amount_display)
-    TextView amountDisplay;
+    DiscreteSeekBar amountSelector;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +56,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         super.onViewCreated(view, savedInstanceState);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        amountSelector.setOnSeekBarChangeListener(this);
+        amountSelector.setOnProgressChangeListener(this);
         setProgress();
     }
 
@@ -64,13 +65,11 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         editor = sharedPreferences.edit();
         generatedNamesAmount = sharedPreferences.getInt(GENERATED_NAMES_AMOUNT, 10);
         amountSelector.setProgress(generatedNamesAmount);
-        amountDisplay.setText(generatedNamesAmount.toString());
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         generatedNamesAmount = progress;
-        amountDisplay.setText(generatedNamesAmount.toString());
         editor.putInt(GENERATED_NAMES_AMOUNT, generatedNamesAmount);
         editor.apply();
     }
@@ -101,7 +100,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         } else if (!patternsContainConsonantStart && vowelSyllables.isEmpty()) {
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
         } else {
-            SortedSet<String> generatedNames = new TreeSet();
+            SortedSet<String> generatedNames = new TreeSet<>();
             Random anyRandom = new Random();
             Random consonantRandom = new Random();
             Random vowelRandom = new Random();
@@ -151,7 +150,12 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                     // add non pattern content
                     name.append(append);
                 }
-                generatedNames.add(name.toString());
+                String generatedName = name.toString();
+                if(generatedNames.contains(generatedName)) {
+                    i--;
+                    continue;
+                }
+                generatedNames.add(generatedName);
             }
 
             GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames.toArray(new String[generatedNames.size()]));
@@ -160,5 +164,22 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
             generatorEmptyState.setVisibility(View.GONE);
         }
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+        generatedNamesAmount = value;
+        editor.putInt(GENERATED_NAMES_AMOUNT, generatedNamesAmount);
+        editor.apply();
+    }
+
+    @Override
+    public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+
     }
 }

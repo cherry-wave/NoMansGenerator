@@ -17,6 +17,14 @@
     </Preference>
 
     <Preference
+        android:summary="https://github.com/AnderWeb/discreteSeekBar"
+        android:title="DiscreteSeekBar">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/AnderWeb/discreteSeekBar" />
+    </Preference>
+
+    <Preference
         android:summary="https://github.com/google/gson"
         android:title="Gson">
         <intent

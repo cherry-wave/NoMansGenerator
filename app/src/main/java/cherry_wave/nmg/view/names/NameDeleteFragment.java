@@ -30,6 +30,7 @@ public class NameDeleteFragment extends NMGDialogFragment {
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         namesFragment = (NamesFragment) getTargetFragment();
         name = Parcels.unwrap(getArguments().getParcelable(ARG_NAME));
@@ -55,9 +56,7 @@ public class NameDeleteFragment extends NMGDialogFragment {
                         dialog.dismiss();
                     }
                 });
-        final MaterialDialog materialDialog = builder.build();
-
-        return materialDialog;
+        return builder.build();
     }
 
 }

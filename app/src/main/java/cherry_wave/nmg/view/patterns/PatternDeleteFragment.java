@@ -30,6 +30,7 @@ public class PatternDeleteFragment extends NMGDialogFragment {
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         patternsActivity = (PatternsActivity) getActivity();
         pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
@@ -55,9 +56,7 @@ public class PatternDeleteFragment extends NMGDialogFragment {
                         dialog.dismiss();
                     }
                 });
-        final MaterialDialog materialDialog = builder.build();
-
-        return materialDialog;
+        return builder.build();
     }
 
 }

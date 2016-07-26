@@ -3,9 +3,11 @@ package cherry_wave.nmg.view.syllables;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -13,6 +15,7 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.orm.SugarRecord;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -82,26 +85,34 @@ public class SyllablesActivity extends NMGActivity {
     public void updateSyllables() {
         syllables = SugarRecord.listAll(Syllable.class, "characters");
 
-        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(getApplicationContext(), syllables);
-        syllablesListView.setAdapter(syllablesAdapter);
+        List<String> strings = new ArrayList<>();
+        for (Syllable syllable:syllables
+             ) {
+            strings.add(syllable.getCharacters());
+        }
 
-        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
-            @Override
-            public void create(SwipeMenu menu) {
-                SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
-                edit.setBackground(android.R.color.darker_gray);
-                edit.setIcon(android.R.drawable.ic_menu_edit);
-                edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
-                menu.addMenuItem(edit);
+        ArrayAdapter simpleCursorAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, strings);
+        syllablesListView.setAdapter(simpleCursorAdapter);
 
-                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
-                delete.setBackground(android.R.color.holo_red_light);
-                delete.setIcon(android.R.drawable.ic_menu_delete);
-                delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
-                menu.addMenuItem(delete);
-            }
-        };
-        syllablesListView.setMenuCreator(swipeMenuCreator);
+//        SyllablesAdapter syllablesAdapter = new SyllablesAdapter(getApplicationContext(), syllables);
+
+//        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
+//            @Override
+//            public void create(SwipeMenu menu) {
+//                SwipeMenuItem edit = new SwipeMenuItem(getApplicationContext());
+//                edit.setBackground(android.R.color.darker_gray);
+//                edit.setIcon(android.R.drawable.ic_menu_edit);
+//                edit.setWidth(edit.getIcon().getMinimumWidth() * 2);
+//                menu.addMenuItem(edit);
+//
+//                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
+//                delete.setBackground(android.R.color.holo_red_light);
+//                delete.setIcon(android.R.drawable.ic_menu_delete);
+//                delete.setWidth(delete.getIcon().getMinimumWidth() * 2);
+//                menu.addMenuItem(delete);
+//            }
+//        };
+//        syllablesListView.setMenuCreator(swipeMenuCreator);
 
         add.show();
     }
