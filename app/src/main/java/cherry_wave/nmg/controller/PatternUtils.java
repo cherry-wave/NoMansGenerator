@@ -83,6 +83,22 @@ public class PatternUtils {
         return true;
     }
 
+    public static boolean containsStart(Pattern pattern, Start start) {
+        java.util.regex.Pattern anyPattern = java.util.regex.Pattern.compile("[Xx]");
+        java.util.regex.Pattern specificPattern = java.util.regex.Pattern.compile("[Cc]");
+        if(Start.VOWEL.equals(start)) {
+            specificPattern = java.util.regex.Pattern.compile("[Vv]");
+        }
+        Matcher matcher = anyPattern.matcher(pattern.getCharacters());
+        if(!matcher.find()) {
+            matcher = specificPattern.matcher(pattern.getCharacters());
+            if(!matcher.find()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static boolean startsWith(String subPattern, Start start) {
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("[Cc].*");
         if(Start.VOWEL.equals(start)) {

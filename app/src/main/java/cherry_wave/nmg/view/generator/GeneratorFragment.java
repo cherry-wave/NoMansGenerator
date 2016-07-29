@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.SortedSet;
@@ -96,10 +97,28 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
         } else if (activePatterns.isEmpty()) {
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_patterns).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
-        } else if (!patternsContainVowelStart && consonantSyllables.isEmpty()) {
-            GeneratorInfoFragment.newInstance(R.string.generator_info_no_consonant_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
-        } else if (!patternsContainConsonantStart && vowelSyllables.isEmpty()) {
-            GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+        } else if (consonantSyllables.isEmpty()) {
+            Iterator<Pattern> iterator = activePatterns.iterator();
+            while (iterator.hasNext()) {
+                Pattern pattern = iterator.next();
+                if (PatternUtils.containsStart(pattern, PatternUtils.Start.CONSONANT)) {
+                    iterator.remove();
+                }
+            }
+            if(!patternsContainVowelStart) {
+                GeneratorInfoFragment.newInstance(R.string.generator_info_no_consonant_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+            }
+        } else if (vowelSyllables.isEmpty()) {
+            Iterator<Pattern> iterator = activePatterns.iterator();
+            while (iterator.hasNext()) {
+                Pattern pattern = iterator.next();
+                if (PatternUtils.containsStart(pattern, PatternUtils.Start.VOWEL)) {
+                    iterator.remove();
+                }
+            }
+            if(!patternsContainConsonantStart) {
+                GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+            }
         } else {
             SortedSet<Name> generatedNames = new TreeSet<>(new Comparator<Name>() {
                 @Override
