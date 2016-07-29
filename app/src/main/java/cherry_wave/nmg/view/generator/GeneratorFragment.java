@@ -87,102 +87,109 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
     @Override
     public void onRefresh() {
         List<Pattern> activePatterns = PatternUtils.getActivePatterns();
-        boolean patternsContainConsonantStart = PatternUtils.containsStart(activePatterns, PatternUtils.Start.CONSONANT);
-        boolean patternsContainVowelStart = PatternUtils.containsStart(activePatterns, PatternUtils.Start.VOWEL);
+        boolean patternsContainConsonantStart = PatternUtils.containsAnyOrStart(activePatterns, PatternUtils.Start.CONSONANT);
+        boolean patternsContainVowelStart = PatternUtils.containsAnyOrStart(activePatterns, PatternUtils.Start.VOWEL);
 
         List<Syllable> consonantSyllables = SyllableUtils.getActiveSyllables(false);
         List<Syllable> vowelSyllables = SyllableUtils.getActiveSyllables(true);
 
         if (consonantSyllables.isEmpty() && vowelSyllables.isEmpty()) {
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+            return;
         } else if (activePatterns.isEmpty()) {
             GeneratorInfoFragment.newInstance(R.string.generator_info_no_patterns).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+            return;
         } else if (consonantSyllables.isEmpty()) {
+            if (!patternsContainVowelStart) {
+                GeneratorInfoFragment.newInstance(R.string.generator_info_no_consonant_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+                return;
+            }
             Iterator<Pattern> iterator = activePatterns.iterator();
             while (iterator.hasNext()) {
                 Pattern pattern = iterator.next();
-                if (PatternUtils.containsStart(pattern, PatternUtils.Start.CONSONANT)) {
+                if (PatternUtils.containsOnlyStart(pattern, PatternUtils.Start.CONSONANT)) {
                     iterator.remove();
                 }
-            }
-            if(!patternsContainVowelStart) {
-                GeneratorInfoFragment.newInstance(R.string.generator_info_no_consonant_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
             }
         } else if (vowelSyllables.isEmpty()) {
+            if (!patternsContainConsonantStart) {
+                GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+                return;
+            }
             Iterator<Pattern> iterator = activePatterns.iterator();
             while (iterator.hasNext()) {
                 Pattern pattern = iterator.next();
-                if (PatternUtils.containsStart(pattern, PatternUtils.Start.VOWEL)) {
+                if (PatternUtils.containsOnlyStart(pattern, PatternUtils.Start.VOWEL)) {
                     iterator.remove();
                 }
             }
-            if(!patternsContainConsonantStart) {
-                GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
-            }
-        } else {
-            SortedSet<Name> generatedNames = new TreeSet<>(new Comparator<Name>() {
-                @Override
-                public int compare(Name name1, Name name2) {
-                    return name1.getCharacters().compareTo(name2.getCharacters());
-                }
-            });
-            Random anyRandom = new Random();
-            Random consonantRandom = new Random();
-            Random vowelRandom = new Random();
-
-            for (int i = 1; i <= generatedNamesAmount; i++) {
-                Pattern pattern = activePatterns.get((int) (Math.random() * activePatterns.size()));
-                String[] subPatterns = pattern.getCharacters().split("\\{");
-                StringBuilder name = new StringBuilder();
-                for (String subPattern : subPatterns) {
-                    int indexOfClose = subPattern.indexOf('}');
-                    if (indexOfClose == -1) {
-                        continue;
-                    }
-                    String append = subPattern.substring(indexOfClose + 1);
-                    subPattern = subPattern.substring(0, indexOfClose);
-
-                    // set together the starting syllable
-                    String startSyllable;
-                    if (PatternUtils.startsWith(subPattern, PatternUtils.Start.CONSONANT)) {
-                        startSyllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
-                    } else if (PatternUtils.startsWith(subPattern, PatternUtils.Start.VOWEL)) {
-                        startSyllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
-                    } else {
-                        if (anyRandom.nextInt(1) == 0) {
-                            startSyllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
-                        } else {
-                            startSyllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
-                        }
-                    }
-                    if (PatternUtils.startsWithUppercase(subPattern)) {
-                        startSyllable = startSyllable.substring(0, 1).toUpperCase() + startSyllable.substring(1);
-                    }
-                    name.append(startSyllable);
-
-                    // add following syllables
-                    int to = PatternUtils.getRangeTo(subPattern);
-                    for (int from = 1; from < to; from++) {
-                        String syllable;
-                        if (anyRandom.nextInt(1) == 0) {
-                            syllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
-                        } else {
-                            syllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
-                        }
-                        name.append(syllable);
-                    }
-
-                    // add non pattern content
-                    name.append(append);
-                }
-                generatedNames.add(new Name(name.toString()));
-            }
-
-            GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames.toArray(new Name[generatedNames.size()]));
-            names.setAdapter(generatedNamesAdapter);
-
-            generatorEmptyState.setVisibility(View.GONE);
         }
+        SortedSet<Name> generatedNames = new TreeSet<>(new Comparator<Name>() {
+            @Override
+            public int compare(Name name1, Name name2) {
+                return name1.getCharacters().compareTo(name2.getCharacters());
+            }
+        });
+        Random anyRandom = new Random();
+        Random consonantRandom = new Random();
+        Random vowelRandom = new Random();
+
+        for (int i = 1; i <= generatedNamesAmount; i++) {
+            Pattern pattern = activePatterns.get((int) (Math.random() * activePatterns.size()));
+            String[] subPatterns = pattern.getCharacters().split("\\{");
+            StringBuilder name = new StringBuilder();
+            for (String subPattern : subPatterns) {
+                int indexOfClose = subPattern.indexOf('}');
+                if (indexOfClose == -1) {
+                    continue;
+                }
+                String append = subPattern.substring(indexOfClose + 1);
+                subPattern = subPattern.substring(0, indexOfClose);
+
+                // set together the starting syllable
+                String startSyllable;
+                if (vowelSyllables.isEmpty() || PatternUtils.startsWith(subPattern, PatternUtils.Start.CONSONANT)) {
+                    startSyllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
+                } else if (consonantSyllables.isEmpty() || PatternUtils.startsWith(subPattern, PatternUtils.Start.VOWEL)) {
+                    startSyllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
+                } else {
+                    if (anyRandom.nextInt(1) == 0) {
+                        startSyllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
+                    } else {
+                        startSyllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
+                    }
+                }
+                if (PatternUtils.startsWithUppercase(subPattern)) {
+                    startSyllable = startSyllable.substring(0, 1).toUpperCase() + startSyllable.substring(1);
+                }
+                name.append(startSyllable);
+
+                // add following syllables
+                int to = PatternUtils.getRangeTo(subPattern);
+                for (int from = 1; from < to; from++) {
+                    String syllable;
+                    if (anyRandom.nextInt(1) == 0 || vowelSyllables.isEmpty()) {
+                        if(consonantSyllables.isEmpty()) {
+                            syllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
+                        } else {
+                            syllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();
+                        }
+                    } else {
+                        syllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
+                    }
+                    name.append(syllable);
+                }
+
+                // add non pattern content
+                name.append(append);
+            }
+            generatedNames.add(new Name(name.toString()));
+        }
+
+        GeneratedNamesAdapter generatedNamesAdapter = new GeneratedNamesAdapter(getContext(), generatedNames.toArray(new Name[generatedNames.size()]));
+        names.setAdapter(generatedNamesAdapter);
+
+        generatorEmptyState.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);
     }
 
