@@ -1,0 +1,44 @@
+<resources>
+    <string-array name="sections">
+        <item name="generator">Gerador</item>
+        <item name="names">Nomes</item>
+    </string-array>
+
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="generator_empty_state">Deslize para baixo para gerar nomes</string>
+    <string name="invalid_syllable_character">Sílabas somente podem conter caracteres alfabeticos, sem acentos e minusculos</string>
+    <string name="invalid_syllable_length">Sílabas devem ter pelo menos dois caracteres</string>
+    <string name="invalid_syllable_vowel">Sílabas devem conter pelo menos uma vogal</string>
+    <string name="invalid_pattern_no_braces">Deve conter pelo menos um padrão dentro de chaves {}</string>
+    <string name="invalid_pattern_uneven_braces">Deve conter a mesma quantidade de chaves abertas { e fechadas }</string>
+    <string name="invalid_pattern_start">Padrão precisa iniciar com um destes caracteres: : X/x (qualquer um), C/c (consoante), V/v (vogal)</string>
+    <string name="invalid_pattern_length">Tamanho do padrão precisa ser pelo menos 1 e no máximo 9</string>
+    <string name="invalid_pattern_range">Intervalo do padrão precisa ser pelo menos 1-1 e no máximo 9-9</string>
+    <string name="confirm_delete_syllable">Excluir sílaba?</string>
+    <string name="confirm_delete_pattern">Excluir padrão?</string>
+    <string name="confirm_delete_name">Excluir nome?</string>
+    <string name="delete">Excluir</string>
+    <string name="title_save_pattern">Salvar padrão</string>
+    <string name="title_save_syllable">Salvar sílaba</string>
+    <string name="title_save_name">Salvar nome</string>
+    <string name="title_generator_info">Info</string>
+    <string name="generator_info_no_syllables">Você não tem nenhuma sílaba ativa. Por favor, ative ou crie alguma.</string>
+    <string name="generator_info_no_patterns">Você não tem nenhum padrão ativo. Por favor, ative ou crie algum.</string>
+    <string name="generator_info_no_consonant_syllables">Você possui apenas padrões ativos que requerem consoantes, mas nenhuma sílaba ativa que inicia com alguma.</string>
+    <string name="generator_info_no_vowel_syllables">Você possui apenas padrões ativos que requerem vogais, mas nenhuma sílaba ativa que inicia com alguma.</string>
+    <string name="title_activity_used_libraries">Bibliotecas usadas</string>
+    <string name="preference_about_app">Sobre o app</string>
+    <string name="preference_patterns">Padrões</string>
+    <string name="preference_syllables">Sílabas</string>
+    <string name="preference_about_app_used_libraries_summary">As bibliotecas Android que usei para deixar esse app tão chique.</string>
+    <string name="preference_patterns_summary">Edite os padrões usados para geração dos nomes.</string>
+    <string name="preference_syllables_summary">Edite as sílabas usadas para geração dos nomes.</string>
+    <string name="title_activity_settings">Preferências</string>
+    <string name="title_activity_patterns">Padrões</string>
+    <string name="title_activity_syllables">Sílabas</string>
+    <string name="generated_names_amount_selector">Gerar %s</string>
+    <string name="preference_feedback">Send feedback</string>
+    <string name="preference_feedback_url">https://goo.gl/forms/BmL7Zh64fiJOjwNa2</string>
+    <string name="preference_feedback_summary">Abre no seu browser</string>
+</resources>
