@@ -38,7 +38,7 @@
     <string name="title_activity_patterns">Padrões</string>
     <string name="title_activity_syllables">Sílabas</string>
     <string name="generated_names_amount_selector">Gerar %s</string>
-    <string name="preference_feedback">Send feedback</string>
+    <string name="preference_feedback">Send feedback (english only)</string>
     <string name="preference_feedback_url">https://goo.gl/forms/BmL7Zh64fiJOjwNa2</string>
-    <string name="preference_feedback_summary">Abre no seu browser</string>
+    <string name="preference_feedback_summary">Opens in your browser</string>
 </resources>
