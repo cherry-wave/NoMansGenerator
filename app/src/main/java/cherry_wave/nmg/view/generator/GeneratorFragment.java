@@ -136,11 +136,13 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
 
         for (int i = 1; i <= generatedNamesAmount; i++) {
             Pattern pattern = activePatterns.get((int) (Math.random() * activePatterns.size()));
-            String[] subPatterns = pattern.getCharacters().split("\\{");
+            String characters = pattern.getCharacters();
+            String[] subPatterns = characters.split("\\{");
             StringBuilder name = new StringBuilder();
             for (String subPattern : subPatterns) {
                 int indexOfClose = subPattern.indexOf('}');
                 if (indexOfClose == -1) {
+                    name.append(subPattern);
                     continue;
                 }
                 String append = subPattern.substring(indexOfClose + 1);

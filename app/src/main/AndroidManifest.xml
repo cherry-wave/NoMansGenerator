@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cherry_wave.nmg">
 
-    <!-- todo android:backupAgent=""-->
+    <!-- todo android:backupAgent="" -->
     <application
-        android:allowBackup="false"
         android:name="com.orm.SugarApp"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
@@ -49,6 +49,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.settings.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".view.settings.TutorialActivity"
+            android:label="@string/title_activity_tutorial"
+            android:parentActivityName=".view.settings.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cherry_wave.nmg.view.settings.SettingsActivity" />
         </activity>
     </application>
 

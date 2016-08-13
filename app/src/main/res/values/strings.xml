@@ -44,4 +44,52 @@
     <string name="preference_feedback">Send feedback</string>
     <string name="preference_feedback_url">https://goo.gl/forms/BmL7Zh64fiJOjwNa2</string>
     <string name="preference_feedback_summary">Opens in your browser</string>
+    <string name="preference_helper_summary">Translated the app into portuguese and has some cool projects too! Have a look: https://github.com/adrielcafe</string>
+    <string name="preference_helper" translatable="false">Adriel Café</string>
+    <string name="preference_patterns_tutorial">Tutorial</string>
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="tutorial">
+        "Generator\n\n"
+
+        "Swipe down to generate names. Check the right boxes to save your favourites. You have to "
+        "scroll to the top and then swipe down again to generate new names. The bottom bar can be "
+        "used to set how many unique names should be generated on one swipe.\n\n\n\n"
+
+        "Adding new names, syllables or patterns\n\n"
+
+        "To add a new entry, just click on the \"+\" button in the bottom right corner of the lists.\n\n\n\n"
+
+        "Edit or delete names, syllables or patterns\n\n"
+
+        "To show the edit and delete buttons of an entry, simply swipe from right to left on the "
+        "desired line. This will hide the \"+\" button, so swipe from left to right if you want "
+        "to return.\n\n\n\n"
+
+        "Patterns\n\n"
+
+        "Patterns can contain fixed items but must always contain at least one syllable-part.\n\n"
+        "A syllable-part has to start with a \"{\" and end with a \"}\".\n\n"
+        "The first character of it must be either \"X\", \"C\" or \"V\". This determines if the "
+        "first syllable should start with a consonant (C), a vowel (V) or if it can be random (X). "
+        "Setting this character to lowercase or uppercase also sets the first character of the "
+        "starting syllable to lowercase or uppercase.\n\n"
+        "Then follows the amount of used syllables. Either set a fixed number between \"1\" and \"9\" "
+        "or set a range between \"1-1\" to \"9-9\".\n\n"
+        "Outside of these syllable parts, you can add anything you like and it will be added to the "
+        "generated parts.\n\n\n\n"
+
+        "Pattern examples\n\n"
+
+        "To understand the previous text a bit better, I will explain what the patterns provided "
+        "at installation will do.\n\n"
+        "\"{X2-9}\" will generate names starting with an uppercase random syllable and these names "
+        "will contain between 2 and 9 syllables.\n\n"
+        "\"{V1} {C1}'{c1-4}\" will generate names starting with one uppercase syllable that has a "
+        "vowel as first character.\n"
+        "Then follows a static blank space.\n"
+        "Then one uppercase syllable that starts with a consonant will follow, directly followed by "
+        "a static apostrophe.\n"
+        "The last syllable-part will add a lowercase consonant syllable and will contain between 1 "
+        "and 4 syllables in total."
+    </string>
 </resources>

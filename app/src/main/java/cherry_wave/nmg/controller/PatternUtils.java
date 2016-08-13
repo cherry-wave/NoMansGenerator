@@ -41,6 +41,7 @@ public class PatternUtils {
             return context.getString(R.string.invalid_pattern_uneven_braces);
         }
 
+        // Maybe refactor this to not allow { without a } and otherwise
         String[] subPatterns = characters.split("\\{");
         for (String subPattern : subPatterns) {
             int indexOfClose = subPattern.indexOf('}');

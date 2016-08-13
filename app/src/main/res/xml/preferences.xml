@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
-        android:summary="@string/preference_patterns_summary"
-        android:title="@string/preference_patterns">
-        <intent
-            android:targetClass="cherry_wave.nmg.view.patterns.PatternsActivity"
-            android:targetPackage="cherry_wave.nmg" />
-    </Preference>
-    <Preference
         android:summary="@string/preference_syllables_summary"
         android:title="@string/preference_syllables">
         <intent
             android:targetClass="cherry_wave.nmg.view.syllables.SyllablesActivity"
             android:targetPackage="cherry_wave.nmg" />
     </Preference>
+    <Preference
+        android:summary="@string/preference_patterns_summary"
+        android:title="@string/preference_patterns">
+        <intent
+            android:targetClass="cherry_wave.nmg.view.patterns.PatternsActivity"
+            android:targetPackage="cherry_wave.nmg" />
+    </Preference>
     <PreferenceCategory
         android:key="preference_about_app"
         android:title="@string/preference_about_app">
-
+        <Preference android:title="@string/preference_patterns_tutorial">
+            <intent
+                android:targetClass="cherry_wave.nmg.view.settings.TutorialActivity"
+                android:targetPackage="cherry_wave.nmg" />
+        </Preference>
         <Preference
             android:key="preference_about_app_used_libraries"
             android:summary="@string/preference_about_app_used_libraries_summary"
@@ -25,6 +29,14 @@
             <intent
                 android:targetClass="cherry_wave.nmg.view.settings.UsedLibrariesActivity"
                 android:targetPackage="cherry_wave.nmg" />
+        </Preference>
+
+        <Preference
+            android:summary="@string/preference_helper_summary"
+            android:title="@string/preference_helper">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/adrielcafe" />
         </Preference>
 
         <Preference
