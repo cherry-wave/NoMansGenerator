@@ -9,8 +9,8 @@ android {
         applicationId "cherry_wave.nmg"
         minSdkVersion 21 // todo make it work for 19
         targetSdkVersion 24
-        versionCode 6
-        versionName "1.0.4"
+        versionCode 7
+        versionName "1.0.5"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

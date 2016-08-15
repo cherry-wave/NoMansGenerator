@@ -108,4 +108,14 @@
         gewünschten Eintrag von rechts nach links. Das wird den \"+\"-Button ausblenden, um diesen
         also wieder anzuzeigen wische auf dem Eintrag von links nach rechts
     </string>
+    <string name="rate_hint">
+        Es scheint so als hättest du schon einige Namensinspirationen durch meine App erhalten ;)
+        Über deine ehrliche Bewertung im Google Play Store würde ich mich sehr freuen!
+    </string>
+    <string name="rate_hint_yes">
+        Gerne
+    </string>
+    <string name="rate_hint_no">
+        Nein danke
+    </string>
 </resources>

@@ -35,6 +35,8 @@ public class NamesFragment extends NMGFragment {
     SwipeMenuListView namesListView;
     private List<Name> names;
 
+    private static final int MIN_NAMES_FOR_RATE_HINT = 15;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,6 +93,17 @@ public class NamesFragment extends NMGFragment {
 
     public void updateNames() {
         names = SugarRecord.listAll(Name.class, "characters");
+        String rateHitShown = "RATE_HINT_SHOWN";
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean(rateHitShown, false)) {
+            if(names.size() >= MIN_NAMES_FOR_RATE_HINT) {
+                RateHintDialog.newInstance().show(getFragmentManager(), InfoDialog.class.getCanonicalName());
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(rateHitShown, true);
+                editor.apply();
+            }
+        }
 
         List<String> namesCharacters = new ArrayList<>(names.size());
         for (Name name : names) {
