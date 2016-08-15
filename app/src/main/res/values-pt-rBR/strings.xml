@@ -94,4 +94,14 @@
         To show the edit and delete buttons of a pattern swipe from right to left on the entry. This
         will hide the \"+\" button, so to show it again swipe from left to right on the entry
     </string>
+    <string name="rate_hint">
+        It seems you have already got some name inspirations through my app ;) I would really
+        appreciate your honest review on Google Play Store!
+    </string>
+    <string name="rate_hint_yes">
+        Sure
+    </string>
+    <string name="rate_hint_no">
+        No thanks
+    </string>
 </resources>
