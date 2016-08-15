@@ -29,6 +29,7 @@ import cherry_wave.nmg.controller.SyllableUtils;
 import cherry_wave.nmg.model.Name;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
+import cherry_wave.nmg.view.InfoDialog;
 
 public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener, SeekBar.OnSeekBarChangeListener, DiscreteSeekBar.OnProgressChangeListener {
 
@@ -59,6 +60,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         amountSelector.setOnProgressChangeListener(this);
+
         setProgress();
     }
 
@@ -94,14 +96,14 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         List<Syllable> vowelSyllables = SyllableUtils.getActiveSyllables(true);
 
         if (consonantSyllables.isEmpty() && vowelSyllables.isEmpty()) {
-            GeneratorInfoFragment.newInstance(R.string.generator_info_no_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+            InfoDialog.newInstance(R.string.generator_info_no_syllables).show(getFragmentManager(), InfoDialog.class.getCanonicalName());
             return;
         } else if (activePatterns.isEmpty()) {
-            GeneratorInfoFragment.newInstance(R.string.generator_info_no_patterns).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+            InfoDialog.newInstance(R.string.generator_info_no_patterns).show(getFragmentManager(), InfoDialog.class.getCanonicalName());
             return;
         } else if (consonantSyllables.isEmpty()) {
             if (!patternsContainVowelStart) {
-                GeneratorInfoFragment.newInstance(R.string.generator_info_no_consonant_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+                InfoDialog.newInstance(R.string.generator_info_no_consonant_syllables).show(getFragmentManager(), InfoDialog.class.getCanonicalName());
                 return;
             }
             Iterator<Pattern> iterator = activePatterns.iterator();
@@ -113,7 +115,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
             }
         } else if (vowelSyllables.isEmpty()) {
             if (!patternsContainConsonantStart) {
-                GeneratorInfoFragment.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), GeneratorInfoFragment.class.getCanonicalName());
+                InfoDialog.newInstance(R.string.generator_info_no_vowel_syllables).show(getFragmentManager(), InfoDialog.class.getCanonicalName());
                 return;
             }
             Iterator<Pattern> iterator = activePatterns.iterator();
@@ -171,7 +173,7 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
                 for (int from = 1; from < to; from++) {
                     String syllable;
                     if (anyRandom.nextInt(1) == 0 || vowelSyllables.isEmpty()) {
-                        if(consonantSyllables.isEmpty()) {
+                        if (consonantSyllables.isEmpty()) {
                             syllable = vowelSyllables.get(vowelRandom.nextInt(vowelSyllables.size())).getCharacters();
                         } else {
                             syllable = consonantSyllables.get(consonantRandom.nextInt(consonantSyllables.size())).getCharacters();

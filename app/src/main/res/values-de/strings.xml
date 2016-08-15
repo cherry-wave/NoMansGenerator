@@ -7,7 +7,13 @@
 
     <string name="cancel">Abbrechen</string>
     <string name="save">Speichern</string>
-    <string name="generator_empty_state">Wische nach unten um Namen zu generieren</string>
+    <string name="generator_empty_state">
+        Wische nach unten um Namen zu generieren. Um erneut Namen zu generieren musst du eventuell
+        ganz nach oben scrollen und dann nochmals nach unten wischen.\n\n
+        Setz ein Häkchen auf die rechten Boxen um deine Favoriten zu speichern.\n\n
+        Die untere Leiste kann dazu genutzt werden um anzugeben wieviele einzigartige Namen \"auf
+        einen Wisch\" genertiert werden sollen.
+    </string>
     <string name="confirm_delete_syllable">Silbe löschen?</string>
     <string name="delete">Löschen</string>
     <string name="confirm_delete_pattern">Muster löschen?</string>
@@ -21,7 +27,7 @@
     <string name="invalid_syllable_length">Silben müssen mindestens zwei Buchstaben lang sein</string>
     <string name="invalid_syllable_vowel">Silben müssen mindestens einen Vokal enthalten</string>
     <string name="invalid_pattern_uneven_braces">Muss dieselbe Anzahl an öffnenden { und schließenden } geschweiften Klammern haben</string>
-    <string name="title_generator_info">Information</string>
+    <string name="title_info">Information</string>
     <string name="generator_info_no_syllables">Du hast keine aktiven Silben. Bitte aktiviere oder erstelle welche.</string>
     <string name="generator_info_no_patterns">Du hast keine aktiven Muster. Bitte aktiviere oder erstelle welche.</string>
     <string name="generator_info_no_consonant_syllables">Du hast nur aktive Muster die Konsonanten benötigen aber keine aktiven Silben die mit einem anfangen. Bitte aktiviere oder erstelle welche.</string>
@@ -45,51 +51,61 @@
     <string name="preference_helper_summary">Er hat diese App in portugiesisch übersetzt und selber ein paar echt coole Projekte! Schau mal vorbei: https://github.com/adrielcafe</string>
     <string name="title_activity_tutorial">Anleitung</string>
     <string name="preference_patterns_tutorial">Anleitung</string>
-    <string name="tutorial">
-        "Generator\n\n"
+    <string name="tutorial_main">
+        Um einen neuen Namen, Silbe oder Muster hinzuzufügen klicke einfach auf den \"+\"-Button
+        in der unteren rechten Ecke der Listen.\n\n
 
-        "Wische nach unten um Namen zu generieren. Setz ein Häkchen auf die rechten Boxen um deine "
-        "Favoriten zu markieren. Um erneut Namen zu generieren musst du ganz nach oben scrollen und "
-        "dann nochmals nach unten wischen. Die untere Leiste kann dazu genutzt werden um anzugeben "
-        "wieviele einzigartige Namen \"auf einen Wisch\" genertiert werden sollen.\n\n\n\n"
+        Um den Bearbeiten- und Löschen-Button bei einem Namen, Silbe oder Muster einzublenden
+        wische einfach auf dem gewünschten Eintrag von rechts nach links. Das wird den \"+\"-Button
+        ausblenden, um diesen also wieder anzuzeigen wische auf dem Eintrag von links nach rechts.
+    </string>
+    <string name="tutorial_patterns">
+        Muster können feste Bestandteile enthalten aber müssen mindestens einen Silben-Bestandteil
+        enthalten.\n\n
+        Ein Silben-Bestandteil muss mit einem \"{\" anfangen und mit einem \"}\" enden.\n\n
+        Der erste Buchstabe muss entweder \"X\", \"C\" oder \"V\" sein. Er legt fest, ob die erste
+        Silbe mit einem Konsonanten (C) oder einem Vokal (V) starten muss oder ob dies zufällig
+        sein darf (X). Wenn dieser Buchstabe groß oder klein geschrieben ist, wird auch der erste
+        Buchstabe der Startsilbe groß oder klein geschrieben.\n\n
+        Dann folgt die Anzahl der benutzten Silben. Setze entweder eine feste Zahl zwischen \"1\"
+        und \"9\" oder einen Bereich zwischen \"1-1\" und \"9-9\".\n\n
+        Außerhalb dieser Silben-Bestandteile kannst du schreiben was du möchtest und es wird zu
+        den generierten Bestandteilen hinzugefügt.\n\n\n\n
 
-        "Neue Namen, Silben oder Muster hinzufügen\n\n"
 
-        "Um einen neuen Eintrag hinzuzufügen klicke einfach auf den \"+\" Button in der unteren "
-        "rechten Ecke der Listen.\n\n\n\n"
+        Um den oberen Text ein wenig besser zu verstehen werde ich im folgenden die Muster die bei
+        der Installation Standard sind erklären.\n\n
 
-        "Namen, Silben oder Muster editieren oder löschen\n\n"
+        \"{X2-9}\" wird Namen generieren die mit einer groß geschriebenen, zufälligen Silbe
+        starten werden und diese Namen werden zwischen 2 und 9 enthalten.\n\n
 
-        "Um den Bearbeiten- und Löschen-Button einzublenden wische einfach auf dem gewünschten "
-        "Eintrag von rechts nach links. Das wird den \"+\"-Button ausblenden, also wische von links "
-        "nach rechts um zurückzukehren.\n\n\n\n"
-
-        "Muster\n\n"
-
-        "Muster können feste Bestandteile enthalten aber müssen mindestens einen Silben-Bestandteil "
-        "enthalten.\n\n"
-        "Ein Silben-Bestandteil muss mit einem \"{\" anfangen und mit einem \"}\" enden.\n\n"
-        "Der erste Buchstabe muss entweder \"X\", \"C\" oder \"V\" sein. Er legt fest, ob die erste "
-        "Silbe mit einem Konsonanten (C) oder einem Vokal (V) starten muss oder ob dies zufällig "
-        "sein darf (X). Wenn dieser Buchstabe groß oder klein geschrieben ist, wird auch der erste "
-        "Buchstabe der Startsilbe groß oder klein geschrieben.\n\n"
-        "Dann folgt die Anzahl der benutzten Silben. Setze entweder eine feste Zahl zwischen \"1\" "
-        "und \"9\" oder einen Bereich zwischen \"1-1\" und \"9-9\".\n\n"
-        "Außerhalb dieser Silben-Bestandteile kannst du schreiben was du möchtest und es wird zu "
-        "den generierten Bestandteilen hinzugefügt.\n\n\n\n"
-
-        "Beispielmuster\n\n"
-
-        "Um den oberen Text ein wenig besser zu verstehen werde ich im folgenden die Muster die bei "
-        "der Installation Standard sind erklären.\n\n"
-        "\"{X2-9}\" wird Namen generieren die mit einer groß geschriebenen, zufälligen Silbe "
-        "starten werden und diese Namen werden zwischen 2 und 9 enthalten.\n\n"
-        "\"{V1} {C1}'{c1-4}\" wird Namen generieren die mit einer groß geschriebenen Silbe, deren "
-        "erster Buchstabe ein Vokal ist, starten.\n"
-        "Dann folgt immer ein Leerzeichen.\n"
-        "Danach kommt eine groß geschriebene Konsonanten-Silbe, direkt gefolgt von einem statischen "
-        "Apostroph.\n"
-        "Der letzte Silben-Bestandteil wird eine klein geschriebene Konsonanten-Silbe hinzufügen und "
-        "in Summe 1 bis 4 Silben enthalten."
+        \"{V1} {C1}\'{c1-4}\" wird Namen generieren die mit einer groß geschriebenen Silbe, deren
+        erster Buchstabe ein Vokal ist, starten.\n
+        Dann folgt immer ein Leerzeichen.\n
+        Danach kommt eine groß geschriebene Konsonanten-Silbe, direkt gefolgt von einem statischen
+        Apostroph.\n
+        Der letzte Silben-Bestandteil wird eine klein geschriebene Konsonanten-Silbe hinzufügen und
+        in Summe 1 bis 4 Silben enthalten.
+    </string>
+    <string name="info_names">
+        Um einen neuen Namen hinzuzufügen klicke einfach auf den \"+\"-Button in der unteren
+        rechten Ecke.\n\n
+        Um den Bearbeiten- und Löschen-Button bei einem Namen einzublenden wische einfach auf dem
+        gewünschten Eintrag von rechts nach links. Das wird den \"+\"-Button ausblenden, um diesen
+        also wieder anzuzeigen wische auf dem Eintrag von links nach rechts
+    </string>
+    <string name="info_syllables">
+        Um eine neue Silbe hinzuzufügen klicke einfach auf den \"+\"-Button in der unteren rechten
+        Ecke.\n\n
+        Um den Bearbeiten- und Löschen-Button bei einer Silbe einzublenden wische einfach auf dem
+        gewünschten Eintrag von rechts nach links. Das wird den \"+\"-Button ausblenden, um diesen
+        also wieder anzuzeigen wische auf dem Eintrag von links nach rechts
+    </string>
+    <string name="info_patterns">
+        Um ein neues Muster hinzuzufügen klicke einfach auf den \"+\"-Button in der unteren rechten
+        Ecke.\n\n
+        Um den Bearbeiten- und Löschen-Button bei einem Muster einzublenden wische einfach auf dem
+        gewünschten Eintrag von rechts nach links. Das wird den \"+\"-Button ausblenden, um diesen
+        also wieder anzuzeigen wische auf dem Eintrag von links nach rechts
     </string>
 </resources>

@@ -1,11 +1,14 @@
 package cherry_wave.nmg.view.patterns;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.orm.SugarRecord;
 
@@ -16,6 +19,8 @@ import butterknife.OnClick;
 import cherry_wave.nmg.NMGActivity;
 import cherry_wave.nmg.NMGSwipeMenuCreator;
 import cherry_wave.nmg.R;
+import cherry_wave.nmg.view.InfoDialog;
+import cherry_wave.nmg.view.TutorialActivity;
 import cherry_wave.nmg.model.Pattern;
 import lombok.Getter;
 
@@ -27,6 +32,9 @@ public class PatternsActivity extends NMGActivity {
     @BindView(R.id.patterns_list)
     SwipeMenuListView patternsListView;
     private List<Pattern> patterns;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +52,8 @@ public class PatternsActivity extends NMGActivity {
                         editPattern(pattern);
                         break;
                     case 1:
-                        PatternDeleteFragment patternDeleteDialog = PatternDeleteFragment.newInstance(pattern);
-                        patternDeleteDialog.show(getSupportFragmentManager(), PatternDeleteFragment.class.getCanonicalName());
+                        PatternDeleteDialog patternDeleteDialog = PatternDeleteDialog.newInstance(pattern);
+                        patternDeleteDialog.show(getSupportFragmentManager(), PatternDeleteDialog.class.getCanonicalName());
                         break;
                 }
                 return false;
@@ -65,6 +73,36 @@ public class PatternsActivity extends NMGActivity {
         });
 
         updatePatterns();
+
+        String infoShown = "INFO_SHOWN_PATTERNS";
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean(infoShown, false)) {
+            InfoDialog.newInstance(R.string.info_patterns).show(getSupportFragmentManager(), InfoDialog.class.getCanonicalName());
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(infoShown, true);
+            editor.apply();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_patterns, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_tutorial) {
+            Intent intent = new Intent(this, TutorialActivity.class);
+            intent.putExtra(TutorialActivity.EXTRA_TEXT, R.string.tutorial_patterns);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.pattern_add)
@@ -73,8 +111,8 @@ public class PatternsActivity extends NMGActivity {
     }
 
     public void editPattern(Pattern pattern) {
-        PatternSaveFragment patternSaveDialog = PatternSaveFragment.newInstance(pattern);
-        patternSaveDialog.show(getSupportFragmentManager(), PatternSaveFragment.class.getCanonicalName());
+        PatternSaveDialog patternSaveDialog = PatternSaveDialog.newInstance(pattern);
+        patternSaveDialog.show(getSupportFragmentManager(), PatternSaveDialog.class.getCanonicalName());
     }
 
     public void updatePatterns() {

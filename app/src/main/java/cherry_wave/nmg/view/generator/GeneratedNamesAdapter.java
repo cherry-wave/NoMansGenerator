@@ -6,20 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.orm.SugarRecord;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Name;
-import cherry_wave.nmg.model.Pattern;
-import cherry_wave.nmg.model.Syllable;
 
 public class GeneratedNamesAdapter extends ArrayAdapter<Name> {
 
@@ -58,7 +53,7 @@ public class GeneratedNamesAdapter extends ArrayAdapter<Name> {
 
         @OnCheckedChanged(R.id.generated_name_save)
         void deActivate() {
-            if(save.isChecked()) {
+            if (save.isChecked()) {
                 SugarRecord.save(name);
             } else {
                 SugarRecord.delete(name);

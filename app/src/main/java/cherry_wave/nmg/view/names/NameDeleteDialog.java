@@ -3,8 +3,7 @@ package cherry_wave.nmg.view.names;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.InputType;
-import android.widget.EditText;
+import android.support.v4.app.DialogFragment;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -12,45 +11,40 @@ import com.orm.SugarRecord;
 
 import org.parceler.Parcels;
 
-import cherry_wave.nmg.NMGDialogFragment;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Name;
 
-public class NameSaveFragment extends NMGDialogFragment {
+public class NameDeleteDialog extends DialogFragment {
 
     private static final String ARG_NAME = "name";
 
     private NamesFragment namesFragment;
     private Name name;
 
-    public static NameSaveFragment newInstance(Name name) {
-        NameSaveFragment nameSaveDialog = new NameSaveFragment();
+    public static NameDeleteDialog newInstance(Name name) {
+        NameDeleteDialog nameDeleteDialog = new NameDeleteDialog();
         Bundle args = new Bundle();
         args.putParcelable(ARG_NAME, Parcels.wrap(name));
-        nameSaveDialog.setArguments(args);
-        return nameSaveDialog;
+        nameDeleteDialog.setArguments(args);
+        return nameDeleteDialog;
     }
 
-    @NonNull
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         namesFragment = (NamesFragment) getTargetFragment();
         name = Parcels.unwrap(getArguments().getParcelable(ARG_NAME));
-        if (name == null) {
-            name = new Name("");
-        }
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
-                .title(R.string.title_save_name)
+                .content(R.string.confirm_delete_name)
                 .autoDismiss(false)
-                .positiveText(R.string.save)
+                .positiveText(R.string.delete)
                 .positiveColorRes(R.color.colorPrimary)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        EditText editText = dialog.getInputEditText();
-                        name.setCharacters(editText.getText().toString());
-                        save();
+                        SugarRecord.delete(name);
+                        namesFragment.updateNames();
                         dialog.dismiss();
                     }
                 })
@@ -62,19 +56,8 @@ public class NameSaveFragment extends NMGDialogFragment {
                         namesFragment.getAdd().show();
                         dialog.dismiss();
                     }
-                })
-                .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(null, name.getCharacters(), new MaterialDialog.InputCallback() {
-                    @Override
-                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
-                    }
                 });
         return builder.build();
-    }
-
-    private void save() {
-        SugarRecord.save(name);
-        namesFragment.updateNames();
     }
 
 }

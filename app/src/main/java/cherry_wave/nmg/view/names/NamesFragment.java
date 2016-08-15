@@ -1,5 +1,7 @@
 package cherry_wave.nmg.view.names;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -9,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.orm.SugarRecord;
 
@@ -23,6 +23,7 @@ import cherry_wave.nmg.NMGFragment;
 import cherry_wave.nmg.NMGSwipeMenuCreator;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Name;
+import cherry_wave.nmg.view.InfoDialog;
 import lombok.Getter;
 
 public class NamesFragment extends NMGFragment {
@@ -53,9 +54,9 @@ public class NamesFragment extends NMGFragment {
                         editName(name);
                         break;
                     case 1:
-                        NameDeleteFragment nameDeleteDialog = NameDeleteFragment.newInstance(name);
+                        NameDeleteDialog nameDeleteDialog = NameDeleteDialog.newInstance(name);
                         nameDeleteDialog.setTargetFragment(NamesFragment.this, 0);
-                        nameDeleteDialog.show(getFragmentManager(), NameDeleteFragment.class.getCanonicalName());
+                        nameDeleteDialog.show(getFragmentManager(), NameDeleteDialog.class.getCanonicalName());
                         break;
                 }
                 return false;
@@ -83,9 +84,9 @@ public class NamesFragment extends NMGFragment {
     }
 
     public void editName(Name name) {
-        NameSaveFragment nameSaveDialog = NameSaveFragment.newInstance(name);
+        NameSaveDialog nameSaveDialog = NameSaveDialog.newInstance(name);
         nameSaveDialog.setTargetFragment(this, 0);
-        nameSaveDialog.show(getFragmentManager(), NameSaveFragment.class.getCanonicalName());
+        nameSaveDialog.show(getFragmentManager(), NameSaveDialog.class.getCanonicalName());
     }
 
     public void updateNames() {
@@ -101,5 +102,22 @@ public class NamesFragment extends NMGFragment {
         namesListView.setMenuCreator(new NMGSwipeMenuCreator(getActivity()));
 
         add.show();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser) {
+            String infoShown = "INFO_SHOWN_NAMES";
+            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            if (!sharedPreferences.getBoolean(infoShown, false)) {
+                InfoDialog.newInstance(R.string.info_names).show(getFragmentManager(), InfoDialog.class.getCanonicalName());
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(infoShown, true);
+                editor.apply();
+            }
+        }
     }
 }

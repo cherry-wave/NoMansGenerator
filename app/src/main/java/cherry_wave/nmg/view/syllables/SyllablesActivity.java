@@ -1,30 +1,23 @@
 package cherry_wave.nmg.view.syllables;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.orm.SugarRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cherry_wave.nmg.NMGActivity;
-import cherry_wave.nmg.NMGFragment;
 import cherry_wave.nmg.NMGSwipeMenuCreator;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Syllable;
+import cherry_wave.nmg.view.InfoDialog;
 import lombok.Getter;
 
 public class SyllablesActivity extends NMGActivity {
@@ -52,8 +45,8 @@ public class SyllablesActivity extends NMGActivity {
                         editSyllable(syllable);
                         break;
                     case 1:
-                        SyllableDeleteFragment syllableDeleteDialog = SyllableDeleteFragment.newInstance(syllable);
-                        syllableDeleteDialog.show(getSupportFragmentManager(), SyllableDeleteFragment.class.getCanonicalName());
+                        SyllableDeleteDialog syllableDeleteDialog = SyllableDeleteDialog.newInstance(syllable);
+                        syllableDeleteDialog.show(getSupportFragmentManager(), SyllableDeleteDialog.class.getCanonicalName());
                         break;
                 }
                 return false;
@@ -73,6 +66,16 @@ public class SyllablesActivity extends NMGActivity {
         });
 
         updateSyllables();
+
+        String infoShown = "INFO_SHOWN_SYLLABLES";
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean(infoShown, false)) {
+            InfoDialog.newInstance(R.string.info_syllables).show(getSupportFragmentManager(), InfoDialog.class.getCanonicalName());
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(infoShown, true);
+            editor.apply();
+        }
     }
 
     @OnClick(R.id.syllable_add)
@@ -81,8 +84,8 @@ public class SyllablesActivity extends NMGActivity {
     }
 
     public void editSyllable(Syllable syllable) {
-        SyllableSaveFragment syllableSaveDialog = SyllableSaveFragment.newInstance(syllable);
-        syllableSaveDialog.show(getSupportFragmentManager(), SyllableSaveFragment.class.getCanonicalName());
+        SyllableSaveDialog syllableSaveDialog = SyllableSaveDialog.newInstance(syllable);
+        syllableSaveDialog.show(getSupportFragmentManager(), SyllableSaveDialog.class.getCanonicalName());
     }
 
     public void updateSyllables() {

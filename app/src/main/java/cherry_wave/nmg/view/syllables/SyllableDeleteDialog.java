@@ -1,8 +1,9 @@
-package cherry_wave.nmg.view.patterns;
+package cherry_wave.nmg.view.syllables;
 
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -11,40 +12,38 @@ import com.orm.SugarRecord;
 import org.parceler.Parcels;
 
 import cherry_wave.nmg.R;
-import cherry_wave.nmg.model.Pattern;
-import cherry_wave.nmg.NMGDialogFragment;
+import cherry_wave.nmg.model.Syllable;
 
-public class PatternDeleteFragment extends NMGDialogFragment {
+public class SyllableDeleteDialog extends DialogFragment {
 
-    private static final String ARG_PATTERN = "pattern";
+    private static final String ARG_SYLLABLE = "syllable";
 
-    private PatternsActivity patternsActivity;
-    private Pattern pattern;
+    private SyllablesActivity syllablesActivity;
+    private Syllable syllable;
 
-    public static PatternDeleteFragment newInstance(Pattern pattern) {
-        PatternDeleteFragment patternDeleteDialog = new PatternDeleteFragment();
+    public static SyllableDeleteDialog newInstance(Syllable syllable) {
+        SyllableDeleteDialog syllableDialog = new SyllableDeleteDialog();
         Bundle args = new Bundle();
-        args.putParcelable(ARG_PATTERN, Parcels.wrap(pattern));
-        patternDeleteDialog.setArguments(args);
-        return patternDeleteDialog;
+        args.putParcelable(ARG_SYLLABLE, Parcels.wrap(syllable));
+        syllableDialog.setArguments(args);
+        return syllableDialog;
     }
 
     @Override
-    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        patternsActivity = (PatternsActivity) getActivity();
-        pattern = Parcels.unwrap(getArguments().getParcelable(ARG_PATTERN));
+        syllablesActivity = (SyllablesActivity) getActivity();
+        syllable = Parcels.unwrap(getArguments().getParcelable(ARG_SYLLABLE));
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
-                .content(R.string.confirm_delete_pattern)
+                .content(R.string.confirm_delete_syllable)
                 .autoDismiss(false)
                 .positiveText(R.string.delete)
                 .positiveColorRes(R.color.colorPrimary)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        SugarRecord.delete(pattern);
-                        patternsActivity.updatePatterns();
+                        SugarRecord.delete(syllable);
+                        syllablesActivity.updateSyllables();
                         dialog.dismiss();
                     }
                 })
@@ -53,11 +52,13 @@ public class PatternDeleteFragment extends NMGDialogFragment {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        patternsActivity.getAdd().show();
+                        syllablesActivity.getAdd().show();
                         dialog.dismiss();
                     }
                 });
-        return builder.build();
+        final MaterialDialog materialDialog = builder.build();
+
+        return materialDialog;
     }
 
 }

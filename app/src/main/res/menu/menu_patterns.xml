@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.MainActivity">
     <item
-        android:title="@string/title_activity_settings"
-        android:id="@+id/action_settings"
+        android:id="@+id/action_tutorial"
+        android:icon="@drawable/ic_tutorial"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_settings"
+        android:title="@string/title_activity_tutorial"
         app:showAsAction="always" />
 </menu>

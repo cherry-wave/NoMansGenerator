@@ -37,6 +37,7 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
+        android:layout_margin="@dimen/app_margin"
         android:id="@+id/generator_empty_state"
         style="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
         android:layout_width="wrap_content"

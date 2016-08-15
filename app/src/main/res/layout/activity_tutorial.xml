@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".view.settings.TutorialActivity">
+    tools:context=".view.TutorialActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,12 +36,12 @@
             android:layout_height="match_parent"
             android:layout_below="@id/appbar"
             android:layout_margin="@dimen/text_margin"
-            tools:context=".view.settings.TutorialActivity">
+            tools:context=".view.TutorialActivity">
 
         <TextView
+            android:id="@+id/tutorial_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tutorial"/>
+            android:layout_height="wrap_content"/>
 
     </ScrollView>
 </RelativeLayout>

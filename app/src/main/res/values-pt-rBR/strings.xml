@@ -22,7 +22,7 @@
     <string name="title_save_pattern">Salvar padrão</string>
     <string name="title_save_syllable">Salvar sílaba</string>
     <string name="title_save_name">Salvar nome</string>
-    <string name="title_generator_info">Info</string>
+    <string name="title_info">Info</string>
     <string name="generator_info_no_syllables">Você não tem nenhuma sílaba ativa. Por favor, ative ou crie alguma.</string>
     <string name="generator_info_no_patterns">Você não tem nenhum padrão ativo. Por favor, ative ou crie algum.</string>
     <string name="generator_info_no_consonant_syllables">Você possui apenas padrões ativos que requerem consoantes, mas nenhuma sílaba ativa que inicia com alguma.</string>

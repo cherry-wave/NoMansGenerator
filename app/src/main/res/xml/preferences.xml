@@ -14,16 +14,15 @@
             android:targetClass="cherry_wave.nmg.view.patterns.PatternsActivity"
             android:targetPackage="cherry_wave.nmg" />
     </Preference>
-    <PreferenceCategory
-        android:key="preference_about_app"
-        android:title="@string/preference_about_app">
-        <Preference android:title="@string/preference_patterns_tutorial">
+    <PreferenceCategory android:title="@string/preference_about_app">
+        <Preference
+            android:key="@string/preference_patterns_tutorial"
+            android:title="@string/preference_patterns_tutorial">
             <intent
-                android:targetClass="cherry_wave.nmg.view.settings.TutorialActivity"
-                android:targetPackage="cherry_wave.nmg" />
+                android:targetClass="cherry_wave.nmg.view.TutorialActivity"
+                android:targetPackage="cherry_wave.nmg"></intent>
         </Preference>
         <Preference
-            android:key="preference_about_app_used_libraries"
             android:summary="@string/preference_about_app_used_libraries_summary"
             android:title="@string/title_activity_used_libraries">
             <intent

@@ -26,9 +26,9 @@ import cherry_wave.nmg.NMGViewPager;
 import cherry_wave.nmg.R;
 import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
-import cherry_wave.nmg.view.settings.SettingsActivity;
 import cherry_wave.nmg.view.generator.GeneratorFragment;
 import cherry_wave.nmg.view.names.NamesFragment;
+import cherry_wave.nmg.view.settings.SettingsActivity;
 import lombok.Getter;
 
 public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeListener {
@@ -62,7 +62,7 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
 
     private void initialImport() {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        if(!sharedPreferences.getBoolean(INITIAL_IMPORT, false)) {
+        if (!sharedPreferences.getBoolean(INITIAL_IMPORT, false)) {
             try {
                 InputStream inputStream = getResources().openRawResource(R.raw.initial_import);
                 int size = inputStream.available();
@@ -71,10 +71,10 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
                 inputStream.close();
                 Gson gson = new Gson();
                 InitialImport initialImport = gson.fromJson(new String(buffer, "UTF-8"), InitialImport.class);
-                for(String patternCharacters : initialImport.getPatternsCharacters()) {
+                for (String patternCharacters : initialImport.getPatternsCharacters()) {
                     SugarRecord.save(new Pattern(patternCharacters));
                 }
-                for(String syllableCharacters : initialImport.getSyllablesCharacters()) {
+                for (String syllableCharacters : initialImport.getSyllablesCharacters()) {
                     SugarRecord.save(new Syllable(syllableCharacters));
                 }
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -85,7 +85,6 @@ public class MainActivity extends NMGActivity implements ViewPager.OnPageChangeL
             }
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
