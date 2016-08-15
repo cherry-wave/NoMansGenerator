@@ -41,4 +41,57 @@
     <string name="preference_feedback">Send feedback (english only)</string>
     <string name="preference_feedback_url">https://goo.gl/forms/BmL7Zh64fiJOjwNa2</string>
     <string name="preference_feedback_summary">Opens in your browser</string>
+    <!-- Please translate into portuguese -->
+    <string name="preference_helper_summary">He translated the app into portuguese and has some cool projects too! Have a look: https://github.com/adrielcafe</string>
+    <string name="preference_patterns_tutorial">Tutorial</string>
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="tutorial_main">
+        To add a new name, syllable or pattern just click on the \"+\" button in the bottom right
+        corner of the lists.\n\n
+
+        To show the edit and delete buttons of a name, syllable or pattern simply swipe from right
+        to left on the desired entry. This will hide the \"+\" button, so to show it again swipe
+        from left to right on the entry.
+    </string>
+    <string name="tutorial_patterns">
+        Patterns can contain fixed items but must always contain at least one syllable-part.\n\n
+        A syllable-part has to start with a \"{\" and end with a \"}\".\n\n
+        The first character of it must be either \"X\", \"C\" or \"V\". This determines if the
+        first syllable should start with a consonant (C), a vowel (V) or if it can be random (X).
+        Setting this character to lowercase or uppercase also sets the first character of the
+        starting syllable to lowercase or uppercase.\n\n
+        Then follows the amount of used syllables. Either set a fixed number between \"1\" and \"9\"
+        or set a range between \"1-1\" to \"9-9\".\n\n
+        Outside of these syllable parts, you can add anything you like and it will be added to the
+        generated parts.\n\n\n\n
+
+        To understand the previous text a bit better, I will explain what the patterns provided
+        at installation will do.\n\n
+
+        \"{X2-9}\" will generate names starting with an uppercase random syllable and these names
+        will contain between 2 and 9 syllables.\n\n
+
+        \"{V1} {C1}\'{c1-4}\" will generate names starting with one uppercase syllable that has a
+        vowel as first character.\n
+        Then follows a static blank space.\n
+        Then one uppercase syllable that starts with a consonant will follow, directly followed by
+        a static apostrophe.\n
+        The last syllable-part will add a lowercase consonant syllable and will contain between 1
+        and 4 syllables in total.
+    </string>
+    <string name="info_names">
+        To add a new name just click on the \"+\" button in the bottom right corner.\n\n
+        To show the edit and delete buttons of a name swipe from right to left on the entry. This
+        will hide the \"+\" button, so to show it again swipe from left to right on the entry
+    </string>
+    <string name="info_syllables">
+        To add a new syllable just click on the \"+\" button in the bottom right corner.\n\n
+        To show the edit and delete buttons of a syllable swipe from right to left on the entry. This
+        will hide the \"+\" button, so to show it again swipe from left to right on the entry
+    </string>
+    <string name="info_patterns">
+        To add a new pattern just click on the \"+\" button in the bottom right corner.\n\n
+        To show the edit and delete buttons of a pattern swipe from right to left on the entry. This
+        will hide the \"+\" button, so to show it again swipe from left to right on the entry
+    </string>
 </resources>
