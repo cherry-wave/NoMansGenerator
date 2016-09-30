@@ -1,0 +1,3 @@
+en=Updated translations
+de=Übersetzungen aktualisiert
+pt-rBR=Traduções atualizadas
