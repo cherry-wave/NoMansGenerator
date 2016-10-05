@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -31,7 +30,7 @@ import cherry_wave.nmg.model.Pattern;
 import cherry_wave.nmg.model.Syllable;
 import cherry_wave.nmg.view.InfoDialog;
 
-public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener, SeekBar.OnSeekBarChangeListener, DiscreteSeekBar.OnProgressChangeListener {
+public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout.OnRefreshListener, DiscreteSeekBar.OnProgressChangeListener {
 
     private static final String GENERATED_NAMES_AMOUNT = "generatedNamesAmount";
 
@@ -69,21 +68,6 @@ public class GeneratorFragment extends NMGFragment implements SwipeRefreshLayout
         editor = sharedPreferences.edit();
         generatedNamesAmount = sharedPreferences.getInt(GENERATED_NAMES_AMOUNT, 10);
         amountSelector.setProgress(generatedNamesAmount);
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        generatedNamesAmount = progress;
-        editor.putInt(GENERATED_NAMES_AMOUNT, generatedNamesAmount);
-        editor.apply();
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
     @Override
